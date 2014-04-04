@@ -71,3 +71,7 @@ local.properties
 
 # PDT-specific
 .buildpath
+
+# intelliJ IDEA
+arkanoid.iml
+
