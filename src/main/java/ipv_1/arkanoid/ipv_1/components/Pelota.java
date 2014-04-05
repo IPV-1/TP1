@@ -38,7 +38,7 @@ public class Pelota extends GameComponent<GameScene> {
             this.setY(0);
             directionY = -directionY;
         } else if (this.getY() + diameter >= dimension.height) {
-            this.setX(dimension.height - diameter);
+            this.setY(dimension.height - diameter);
             directionY = -directionY;
         }
     }
