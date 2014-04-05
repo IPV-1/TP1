@@ -1,4 +1,4 @@
-package ipv_1.arkanoid.ipv_1.components;
+package components;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;

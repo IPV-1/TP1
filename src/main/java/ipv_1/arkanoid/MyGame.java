@@ -5,7 +5,7 @@ import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Circle;
-import ipv_1.arkanoid.ipv_1.components.Pelota;
+import components.Pelota;
 
 import java.awt.*;
 
