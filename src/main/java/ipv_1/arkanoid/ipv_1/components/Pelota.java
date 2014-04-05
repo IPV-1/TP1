@@ -21,8 +21,15 @@ public class Pelota extends GameComponent<GameScene> {
         this.diameter = diameter;
     }
 
-    public void updateX(DeltaState deltaState){
-        this.setX(this.getX() + directionX * this.getVelocityFactor(deltaState));
+    @Override
+    public void update(DeltaState deltaState) {
+        double velocityFactor = this.getVelocityFactor(deltaState);
+        this.updateX(velocityFactor);
+        this.updateY(velocityFactor);
+    }
+
+    public void updateX(double velocityFactor){
+        this.setX(this.getX() + directionX * velocityFactor);
         if (this.getX() <= 0) {
             this.setX(0);
             directionX = -directionX;
@@ -32,8 +39,8 @@ public class Pelota extends GameComponent<GameScene> {
         }
     }
 
-    public void updateY(DeltaState deltaState){
-        this.setY(this.getY() + directionY * this.getVelocityFactor(deltaState));
+    public void updateY(double velocityFactor){
+        this.setY(this.getY() + directionY * velocityFactor);
         if (this.getY() <= 0) {
             this.setY(0);
             directionY = -directionY;
@@ -47,9 +54,4 @@ public class Pelota extends GameComponent<GameScene> {
         return velocity * deltaState.getDelta();
     }
 
-    @Override
-    public void update(DeltaState deltaState) {
-        this.updateX(deltaState);
-        this.updateY(deltaState);
-    }
 }
