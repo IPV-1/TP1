@@ -26,6 +26,8 @@ public class MyGame extends Game {
 	protected void setUpScenes() {
 		GameScene scene = new GameScene();
 		final int diameter = 50;
+        //TODO: We're passing diameter to Circle and to Pelota classes.
+        // There must be a simplest solution.
         Appearance appearance = new Circle(Color.blue, diameter);
 		scene.addComponent(new Pelota(appearance, 0, 290, dimension, diameter));
 		this.setCurrentScene(scene);

@@ -3,6 +3,9 @@ package utils;
 import com.uqbar.vainilla.DeltaState;
 import components.Pelota;
 
+/**
+ * Abstract class for updating a Pelota coordinates and directions.
+ */
 public abstract class CoordinateUpdater {
 
     Pelota pelota;
