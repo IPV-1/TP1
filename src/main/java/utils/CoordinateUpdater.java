@@ -1,0 +1,32 @@
+package utils;
+
+import com.uqbar.vainilla.DeltaState;
+import components.Pelota;
+
+public abstract class CoordinateUpdater {
+
+    Pelota pelota;
+
+    public CoordinateUpdater(Pelota pelota) {
+        this.pelota = pelota;
+    }
+
+    public void update(DeltaState deltar) {
+        this.setCoordinate(pelota, this.getCoordinate(pelota) + this.getDirection(pelota) * pelota.getVelocityFactor(deltar));
+        if (this.getCoordinate(pelota) <= 0) {
+            this.setCoordinate(pelota, 0);
+            this.setDirection(pelota, -this.getDirection(pelota));
+        } else if (this.getCoordinate(pelota) + pelota.getDiameter() >= pelota.getDimension().height) {
+            this.setCoordinate(pelota, pelota.getDimension().height - pelota.getDiameter());
+            this.setDirection(pelota, -this.getDirection(pelota));
+        }
+    }
+
+    public abstract double getCoordinate(Pelota pelota);
+
+    public abstract void setCoordinate(Pelota pelota, double newValue);
+
+    public abstract int getDirection(Pelota pelota);
+
+    public abstract void setDirection(Pelota pelota, int newValue);
+}

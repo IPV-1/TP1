@@ -4,6 +4,8 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.appearances.Appearance;
+import utils.XUpdater;
+import utils.YUpdater;
 
 import java.awt.*;
 
@@ -23,35 +25,44 @@ public class Pelota extends GameComponent<GameScene> {
 
     @Override
     public void update(DeltaState deltaState) {
-        double velocityFactor = this.getVelocityFactor(deltaState);
-        this.updateX(velocityFactor);
-        this.updateY(velocityFactor);
+        this.updateX(deltaState);
+        this.updateY(deltaState);
     }
 
-    public void updateX(double velocityFactor){
-        this.setX(this.getX() + directionX * velocityFactor);
-        if (this.getX() <= 0) {
-            this.setX(0);
-            directionX = -directionX;
-        } else if (this.getX() + diameter >= dimension.width) {
-            this.setX(dimension.width - diameter);
-            directionX = -directionX;
-        }
+    public void updateX(DeltaState delta){
+        new XUpdater(this).update(delta);
     }
 
-    public void updateY(double velocityFactor){
-        this.setY(this.getY() + directionY * velocityFactor);
-        if (this.getY() <= 0) {
-            this.setY(0);
-            directionY = -directionY;
-        } else if (this.getY() + diameter >= dimension.height) {
-            this.setY(dimension.height - diameter);
-            directionY = -directionY;
-        }
+    public void updateY(DeltaState delta){
+        new YUpdater(this).update(delta);
     }
 
     public double getVelocityFactor(DeltaState deltaState){
         return velocity * deltaState.getDelta();
+    }
+
+    public Dimension getDimension(){
+        return dimension;
+    }
+
+    public int getDiameter(){
+        return diameter;
+    }
+
+    public int getDirectionX() {
+        return directionX;
+    }
+
+    public void setDirectionX(int directionX) {
+        this.directionX = directionX;
+    }
+
+    public int getDirectionY() {
+        return directionY;
+    }
+
+    public void setDirectionY(int directionY) {
+        this.directionY = directionY;
     }
 
 }
