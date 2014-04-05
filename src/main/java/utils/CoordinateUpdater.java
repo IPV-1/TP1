@@ -19,11 +19,17 @@ public abstract class CoordinateUpdater {
         if (this.getCoordinate(pelota) <= 0) {
             this.setCoordinate(pelota, 0);
             this.setDirection(pelota, -this.getDirection(pelota));
-        } else if (this.getCoordinate(pelota) + pelota.getDiameter() >= pelota.getDimension().height) {
-            this.setCoordinate(pelota, pelota.getDimension().height - pelota.getDiameter());
+        } else if (this.getCoordinate(pelota) + pelota.getDiameter() >= getDimentsionLimit()) {
+            this.setCoordinate(pelota, getDimentsionLimit() - pelota.getDiameter());
             this.setDirection(pelota, -this.getDirection(pelota));
         }
     }
+
+    /**
+     * Choose a better name
+     * @return
+     */
+    public abstract int getDimentsionLimit();
 
     public abstract double getCoordinate(Pelota pelota);
 

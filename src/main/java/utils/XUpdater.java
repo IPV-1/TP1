@@ -10,6 +10,11 @@ public class XUpdater extends CoordinateUpdater {
     }
 
     @Override
+    public int getDimentsionLimit() {
+        return pelota.getDimension().width;
+    }
+
+    @Override
     public double getCoordinate(Pelota pelota) {
         return pelota.getX();
     }

@@ -9,6 +9,11 @@ public class YUpdater extends CoordinateUpdater {
     }
 
     @Override
+    public int getDimentsionLimit() {
+        return pelota.getDimension().height;
+    }
+
+    @Override
     public double getCoordinate(Pelota pelota) {
         return pelota.getY();
     }
