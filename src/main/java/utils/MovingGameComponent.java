@@ -36,9 +36,9 @@ public class MovingGameComponent extends GameComponent<GameScene> {
 	@Override
 	public void update(DeltaState deltaState) {
 		double xPosition = this.getX() + this.getUVector().getX()
-				* this.getVelocityFactor(deltaState);
+				* this.getSpeedFactor(deltaState);
 		double yPosition = this.getY() + this.getUVector().getY()
-				* this.getVelocityFactor(deltaState);
+				* this.getSpeedFactor(deltaState);
 		this.setX(xPosition);
 		this.setY(yPosition);
 		this.bounce(xPosition, 0, this.getGame().getDisplayWidth(), true);
@@ -70,7 +70,7 @@ public class MovingGameComponent extends GameComponent<GameScene> {
 		}
 	}
 
-	public double getVelocityFactor(DeltaState deltaState) {
+	public double getSpeedFactor(DeltaState deltaState) {
 		return this.getSpeed() * deltaState.getDelta();
 	}
 
