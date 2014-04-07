@@ -12,10 +12,6 @@ public class MyGame extends Game {
 
 	private Dimension dimension;
 	
-	public static void main(String[] args) throws Exception {
-		new DesktopGameLauncher(new MyGame()).launch();
-	}
-
 	@Override
 	protected void initializeResources() {
 		dimension = new Dimension(800, 600);
@@ -34,8 +30,11 @@ public class MyGame extends Game {
 
 	@Override
 	public String getTitle() {
-		return "MyGame";
+		return "Arkanoid";
 	}
 
+	public static void main(String[] args) throws Exception {
+		new DesktopGameLauncher(new MyGame()).launch();
+	}
 
 }

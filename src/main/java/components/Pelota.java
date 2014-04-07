@@ -28,6 +28,7 @@ public class Pelota extends GameComponent<GameScene> {
     public void update(DeltaState deltaState) {
         this.updateX(deltaState);
         this.updateY(deltaState);
+        super.update(deltaState);
     }
 
     public void updateX(DeltaState delta){
