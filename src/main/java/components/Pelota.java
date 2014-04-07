@@ -1,14 +1,13 @@
 package components;
 
-import java.awt.Color;
-
-import utils.XUpdater;
-import utils.YUpdater;
-
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.appearances.Circle;
+import utils.XUpdater;
+import utils.YUpdater;
+
+import java.awt.*;
 
 
 public class Pelota extends GameComponent<GameScene> {
@@ -17,11 +16,10 @@ public class Pelota extends GameComponent<GameScene> {
     double velocity = 100;
 	final int diameter = 50;
 
-    public Pelota(GameScene scene, double x, double y) {
+    public Pelota(double x, double y) {
         super(x, y);
         
         this.setAppearance(new Circle(Color.blue, diameter));
-        this.setScene(scene);
     }
 
     @Override
