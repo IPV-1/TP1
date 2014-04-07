@@ -1,13 +1,12 @@
 package ipv_1.arkanoid;
 
+import java.awt.Dimension;
+
+import scenes.ArkanoidScene;
+
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameScene;
-import com.uqbar.vainilla.appearances.Appearance;
-import com.uqbar.vainilla.appearances.Circle;
-import components.Pelota;
-
-import java.awt.*;
 
 public class MyGame extends Game {
 
@@ -24,12 +23,7 @@ public class MyGame extends Game {
 
 	@Override
 	protected void setUpScenes() {
-		GameScene scene = new GameScene();
-		final int diameter = 50;
-        //TODO: We're passing diameter to Circle and to Pelota classes.
-        // There must be a simplest solution.
-        Appearance appearance = new Circle(Color.blue, diameter);
-		scene.addComponent(new Pelota(appearance, 0, 290, dimension, diameter));
+		GameScene scene = new ArkanoidScene();
 		this.setCurrentScene(scene);
 	}
 

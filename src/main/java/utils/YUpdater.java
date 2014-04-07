@@ -10,7 +10,7 @@ public class YUpdater extends CoordinateUpdater {
 
     @Override
     public int getDimentsionLimit() {
-        return pelota.getDimension().height;
+        return pelota.getScene().getGame().getDisplayHeight();
     }
 
     @Override

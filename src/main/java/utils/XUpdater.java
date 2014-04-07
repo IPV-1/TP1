@@ -11,7 +11,7 @@ public class XUpdater extends CoordinateUpdater {
 
     @Override
     public int getDimentsionLimit() {
-        return pelota.getDimension().width;
+        return pelota.getScene().getGame().getDisplayWidth();
     }
 
     @Override

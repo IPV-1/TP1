@@ -1,26 +1,27 @@
 package components;
 
-import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.GameScene;
-import com.uqbar.vainilla.appearances.Appearance;
+import java.awt.Color;
+
 import utils.XUpdater;
 import utils.YUpdater;
 
-import java.awt.*;
+import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.appearances.Circle;
 
 
 public class Pelota extends GameComponent<GameScene> {
     int directionX = 1;
     int directionY = 1;
     double velocity = 100;
-    Dimension dimension;
-    int diameter;
+	final int diameter = 50;
 
-    public Pelota(Appearance appearance, double x, double y, Dimension dimension, int diameter){
-        super(appearance,x,y);
-        this.dimension = dimension;
-        this.diameter = diameter;
+    public Pelota(GameScene scene, double x, double y) {
+        super(x, y);
+        
+        this.setAppearance(new Circle(Color.blue, diameter));
+        this.setScene(scene);
     }
 
     @Override
@@ -40,11 +41,7 @@ public class Pelota extends GameComponent<GameScene> {
     public double getVelocityFactor(DeltaState deltaState){
         return velocity * deltaState.getDelta();
     }
-
-    public Dimension getDimension(){
-        return dimension;
-    }
-
+    
     public int getDiameter(){
         return diameter;
     }
