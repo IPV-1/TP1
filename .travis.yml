@@ -2,7 +2,7 @@ language: java
 
 env:
   global:
-    - REPO="TP1"
+    - REPO="IPV-1/TP1"
     - CI_HOME=`pwd`/$REPO
 
 script: sh build.sh
