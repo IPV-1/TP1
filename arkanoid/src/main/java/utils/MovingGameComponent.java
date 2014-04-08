@@ -41,33 +41,8 @@ public class MovingGameComponent extends GameComponent<GameScene> {
 				* this.getSpeedFactor(deltaState);
 		this.setX(xPosition);
 		this.setY(yPosition);
-		this.bounce(xPosition, 0, this.getGame().getDisplayWidth(), true);
-		this.bounce(yPosition, 0, this.getGame().getDisplayHeight(), false);
+
 		super.update(deltaState);
-	}
-
-	public void bounce(double position, double from, double to, boolean isXValue) {
-		double dimension = isXValue ? this.getAppearance().getWidth() : this
-				.getAppearance().getHeight();
-		double fromPosition = position;
-		double toPosition = fromPosition + dimension;
-		while (fromPosition < from || toPosition > to) {
-			double newValue = fromPosition < from ? from : to - dimension;
-			newValue = 2 * newValue - fromPosition;
-			this.setAndInvert(newValue, isXValue);
-			fromPosition = newValue;
-			toPosition = fromPosition + dimension;
-		}
-	}
-
-	protected void setAndInvert(double newValue, boolean isXValue) {
-		if (isXValue) {
-			this.setX(newValue);
-			this.getUVector().invertX();
-		} else {
-			this.setY(newValue);
-			this.getUVector().invertY();
-		}
 	}
 
 	public double getSpeedFactor(DeltaState deltaState) {

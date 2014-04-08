@@ -1,36 +1,33 @@
 package utils;
 
 
-import components.Pelota;
+import components.Ball;
 
 public class XUpdater extends CoordinateUpdater {
 
-    public XUpdater(Pelota pelota) {
-        super(pelota);
+    public XUpdater(Ball ball) {
+        super(ball);
     }
 
     @Override
     public int getDimensionLimit() {
-        return pelota.getScene().getGame().getDisplayWidth();
+        return ball.getScene().getGame().getDisplayWidth();
     }
 
     @Override
-    public double getCoordinate(Pelota pelota) {
-        return pelota.getX();
+    public double getCoordinate(Ball ball) {
+        return ball.getX();
     }
 
     @Override
-    public void setCoordinate(Pelota pelota, double newValue) {
-        pelota.setX(newValue);
+    public void setCoordinate(Ball ball, double newValue) {
+        ball.setX(newValue);
     }
 
     @Override
-    public int getDirection(Pelota pelota) {
-        return pelota.getDirectionX();
+    public void changeDirection(Ball ball) {
+        ball.boundX();
     }
 
-    @Override
-    public void setDirection(Pelota pelota, int newValue) {
-        pelota.setDirectionX(newValue);
-    }
+
 }
