@@ -6,8 +6,6 @@ env:
     - CI_HOME=`pwd`/$REPO
 
 script: sh build.sh
-script: mvn install
-script: mvn test
 
 jdk:
   - openjdk7
