@@ -1,8 +1,11 @@
 language: java
 
-install: cd arkanoid/
-install: mvn install:install-file -DgroupId=com.uqbar -DartifactId=vainilla -Dversion=0.0.4 -Dpackaging=jar -Dfile=vainilla/classes/artifacts/vainilla_jar/vainilla.jar
+env:
+  global:
+    - REPO="TP1"
+    - CI_HOME=`pwd`/$REPO
 
+script: build.sh
 
 jdk:
   - openjdk7
