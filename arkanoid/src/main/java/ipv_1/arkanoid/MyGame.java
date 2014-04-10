@@ -19,7 +19,7 @@ public class MyGame extends Game {
 
 	@Override
 	protected void setUpScenes() {
-		GameScene scene = new ArkanoidScene();
+		GameScene scene = new ArkanoidScene(this);
 		this.setCurrentScene(scene);
 	}
 
