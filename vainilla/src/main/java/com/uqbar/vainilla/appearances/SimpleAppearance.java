@@ -2,6 +2,7 @@ package com.uqbar.vainilla.appearances;
 
 import java.awt.Graphics2D;
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.colissions.Appearance;
 
 public abstract class SimpleAppearance<T extends Appearance> implements Appearance, Cloneable {
 

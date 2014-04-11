@@ -3,33 +3,32 @@ package components;
 import java.awt.Color;
 
 import scenes.ArkanoidScene;
-import utils.MovingGameComponent;
 import utils.XUpdater;
 import utils.YUpdater;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Ball extends MovingGameComponent {
 	
-	private XUpdater updateX;
-	private YUpdater updateY;
-
     public Ball(Color color, int diameter, double xPos, double yPos, double xVec,
                 double yVec, double speed) {
         super(new Circle(color, diameter), xPos, yPos, xVec, yVec, speed);
-        this.updateX = new XUpdater(this);
-        this.updateY = new YUpdater(this);
     }
 
     @Override
     public void update(DeltaState deltaState) {
         super.update(deltaState);
-        this.updateX(deltaState);
-        this.updateY(deltaState);
+        if(this.updateX(deltaState)) {
+        	this.bounceX();
+        }
+        if(this.updateY(deltaState)) {
+        	this.bounceY();
+        }
         
         ((ArkanoidScene)this.getScene()).verifyBallCollides(this);
     }
@@ -44,30 +43,30 @@ public class Ball extends MovingGameComponent {
 			} else {
 				this.setY(component.getY() + component.getHeight() + 1);
 			}
-			boundY();
+			bounceY();
 		} else {
 			if(ballB.getLeft() < componentB.getLeft()) {
 				this.setX(component.getX() - this.getWidth() - 1);
 			} else {
 				this.setX(component.getX() + component.getWidth() + 1);
 			}
-			boundX();
+			bounceX();
 		}
 	}
 
-	public void updateX(DeltaState delta){
-        updateX.update(delta);
+	public boolean updateX(DeltaState delta){
+        return XUpdater.INSTANCE.update(this);
     }
 
-    public void updateY(DeltaState delta){
-        updateY.update(delta);
+    public boolean  updateY(DeltaState delta){
+    	return YUpdater.INSTANCE.update(this);
     }
 
-    public void boundX() {
+    public void bounceX() {
         uVector.invertX();
     }
 
-    public void boundY() {
+    public void bounceY() {
         uVector.invertY();
     }
 

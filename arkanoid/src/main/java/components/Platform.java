@@ -1,11 +1,13 @@
 package components;
 
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
-import utils.MovingGameComponent;
 
 import java.awt.*;
+
+import utils.XUpdater;
 
 public class Platform extends MovingGameComponent {
 	
@@ -19,9 +21,8 @@ public class Platform extends MovingGameComponent {
     @Override
     public void update(DeltaState deltaState){
         this.anyKeyPressed(deltaState);
-
         super.update(deltaState);
-
+        XUpdater.INSTANCE.update(this);
     }
 
     public void anyKeyPressed(DeltaState deltaState){

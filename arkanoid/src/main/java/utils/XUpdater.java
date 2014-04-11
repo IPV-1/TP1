@@ -1,33 +1,30 @@
 package utils;
 
-
-import components.Ball;
+import com.uqbar.vainilla.MovingGameComponent;
 
 public class XUpdater extends CoordinateUpdater {
 
-    public XUpdater(Ball ball) {
-        super(ball);
-    }
+	public static final XUpdater INSTANCE = new XUpdater();
+	
+	protected XUpdater(){}
 
-    @Override
-    public int getDimensionLimit() {
-        return ball.getScene().getGame().getDisplayWidth();
-    }
+	@Override
+	public int getDimensionLimit(MovingGameComponent component) {
+		return component.getScene().getGame().getDisplayWidth();
+	}
 
-    @Override
-    public double getCoordinate(Ball ball) {
-        return ball.getX();
-    }
+	@Override
+	public double getCoordinate(MovingGameComponent component) {
+		return component.getX();
+	}
 
-    @Override
-    public void setCoordinate(Ball ball, double newValue) {
-        ball.setX(newValue);
-    }
+	@Override
+	public void setCoordinate(MovingGameComponent component, double newValue) {
+		component.setX(newValue);
+	}
 
-    @Override
-    public void changeDirection(Ball ball) {
-        ball.boundX();
-    }
-
+	public double getDimension(MovingGameComponent component) {
+		return component.getWidth();
+	}
 
 }
