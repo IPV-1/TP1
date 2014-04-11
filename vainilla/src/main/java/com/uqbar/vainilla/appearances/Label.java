@@ -9,7 +9,6 @@ import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.List;
 import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.colissions.Appearance;
 
 public class Label implements Appearance {
 

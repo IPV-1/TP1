@@ -4,7 +4,6 @@ package com.uqbar.vainilla.appearances;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.colissions.Appearance;
 
 public class Rectangle implements Appearance {
 

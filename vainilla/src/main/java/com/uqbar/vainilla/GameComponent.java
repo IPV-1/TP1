@@ -5,8 +5,8 @@ import static java.lang.Math.min;
 
 import java.awt.Graphics2D;
 
+import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Invisible;
-import com.uqbar.vainilla.colissions.Appearance;
 import com.uqbar.vainilla.colissions.Circle;
 import com.uqbar.vainilla.colissions.Rectangle;
 

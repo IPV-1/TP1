@@ -1,6 +1,6 @@
 package com.uqbar.vainilla;
 
-import com.uqbar.vainilla.colissions.Appearance;
+import com.uqbar.vainilla.appearances.Appearance;
 
 /**
  * GameComponent with velocity (speed and unit vector)
