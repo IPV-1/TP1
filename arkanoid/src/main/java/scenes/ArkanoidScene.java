@@ -18,19 +18,15 @@ public class ArkanoidScene extends GameScene {
 		super();
 
 		this.setGame(game);
-		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 500));
+		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 1500));
 		this.addComponent(new Platform(Color.blue, 100, 10, 20, 580));
 		this.addBlocks();
 	}
 	
 	public void verifyBallCollides(Ball ball) {
 		for (GameComponent<?> component : this.getComponents()) {
-			
 			if(component != ball &&
-				CollisionDetector.INSTANCE.collidesCircleAgainstRect(
-					ball.getX(), ball.getY(), ball.getDiameter() / 2,
-					component.getX(), component.getY(), component.getAppearance().getWidth(), component.getAppearance().getHeight()
-				)) {
+				CollisionDetector.INSTANCE.collidesCircleAgainstRect(ball.getCirc(), component.getRect())) {
 				
 				// Notify collides ball with component
 				ball.collide(component);

@@ -1,5 +1,7 @@
 package com.uqbar.vainilla.colissions;
 
+import com.uqbar.vainilla.GameComponent;
+
 public class Bounds {
 
 	private double x;
@@ -16,6 +18,10 @@ public class Bounds {
 		this.setY(y);
 		this.setWidth(width);
 		this.setHeight(height);
+	}
+	
+	public Bounds(GameComponent<?> component) {
+		this(component.getX(), component.getY(), component.getWidth(), component.getHeight());
 	}
 
 	// ****************************************************************

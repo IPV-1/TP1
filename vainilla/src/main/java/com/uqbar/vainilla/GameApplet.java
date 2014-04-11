@@ -1,8 +1,6 @@
 package com.uqbar.vainilla;
 
 import java.applet.Applet;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 @SuppressWarnings("serial")
 public class GameApplet extends Applet {

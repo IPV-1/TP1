@@ -2,9 +2,13 @@ package com.uqbar.vainilla;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
+
 import java.awt.Graphics2D;
+
 import com.uqbar.vainilla.appearances.Appearance;
 import com.uqbar.vainilla.appearances.Invisible;
+import com.uqbar.vainilla.colissions.Circle;
+import com.uqbar.vainilla.colissions.Rectangle;
 
 public class GameComponent<SceneType extends GameScene> {
 
@@ -132,6 +136,22 @@ public class GameComponent<SceneType extends GameScene> {
 	// ** ACCESSORS
 	// ****************************************************************
 
+	public double getWidth() {
+		return this.getAppearance().getWidth();
+	}
+	
+	public double getHeight() {
+		return this.getAppearance().getHeight();
+	}
+	
+	public Rectangle getRect() {
+		return new Rectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+	}
+	
+	public Circle getCirc() {
+		return new Circle(this.getX(), this.getY(), Math.max(this.getWidth(), this.getHeight()));
+	}
+	
 	public SceneType getScene() {
 		return this.scene;
 	}

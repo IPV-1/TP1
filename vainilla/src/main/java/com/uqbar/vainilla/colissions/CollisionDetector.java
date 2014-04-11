@@ -109,4 +109,23 @@ public class CollisionDetector {
 		return 0.5 * Math.abs((a * d) - (b * c));
 	}
 
+	public boolean collidesCircleAgainstRect(Circle c, Rectangle r) {
+		return this.collidesCircleAgainstRect(c.getX(), c.getY(), c.getRadio(), r.getX(), r.getY(), r.getWidth(), r.getHeight());
+	}
+	
+	public boolean isHorizontalCollision(Bounds r1, Bounds r2) {		
+		double tamX = r2.getRight() - r1.getLeft();
+		double tamY = r2.getBottom() - r1.getTop();
+		
+		if(r1.getLeft() <= r2.getLeft() && r2.getLeft() < r1.getRight()) {
+			tamX = r1.getRight() - r2.getLeft(); 
+		}
+		
+		if(r1.getTop() <= r2.getTop() && r2.getTop() < r1.getBottom()) {
+			tamY = r1.getBottom() - r2.getTop();
+		}
+		
+		return tamY < tamX;
+	}
+
 }
