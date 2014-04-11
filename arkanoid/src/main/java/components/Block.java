@@ -16,5 +16,14 @@ public class Block extends GameComponent<ArkanoidScene> {
 		super(new Rectangle(color, Block.WIDTH, Block.HEIGHT), x, y);
 	}
 	
+	@Override
+	public void collide(GameComponent<?> component) {
+		this.explode();
+	}
+	
+	// Could throw a gift
+	public void explode() {
+		this.destroy();
+	}
 
 }

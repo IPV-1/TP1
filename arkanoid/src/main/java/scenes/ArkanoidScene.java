@@ -34,6 +34,7 @@ public class ArkanoidScene extends GameScene {
 				
 				// Notify collides ball with component
 				ball.collide(component);
+				component.collide(ball);
 			}
 		}
 	}
