@@ -2,6 +2,8 @@ package com.uqbar.vainilla.colissions;
 
 import static java.awt.geom.Point2D.distanceSq;
 
+import com.uqbar.vainilla.GameComponent;
+
 public class CollisionDetector {
 
 	public static final CollisionDetector INSTANCE = new CollisionDetector();
@@ -127,5 +129,18 @@ public class CollisionDetector {
 		
 		return tamY < tamX;
 	}
+	
+	public boolean collidesCircleAgainstRect(GameComponent<?> circle,
+			GameComponent<?> rectangle) throws RuntimeException {
+		if (circle.getAppearance().getClass() != com.uqbar.vainilla.appearances.Circle.class || 
+				rectangle.getAppearance().getClass() != com.uqbar.vainilla.appearances.Rectangle.class) {
+			throw new RuntimeException("Invalid parameter");
+		}
+		return this.collidesCircleAgainstRect(circle.getX(), circle.getY(),
+				circle.getAppearance().getWidth() / 2, rectangle.getX(),
+				rectangle.getY(), rectangle.getAppearance().getWidth(),
+				rectangle.getAppearance().getHeight());
+	}
+
 
 }

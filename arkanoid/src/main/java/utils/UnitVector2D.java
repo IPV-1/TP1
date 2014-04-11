@@ -27,7 +27,10 @@ public class UnitVector2D {
 		this.setLocation(- this.getX(), - this.getY());
 	}
 	
-	protected void set(double x, double y){
+	public void set(double x, double y) throws RuntimeException {
+		if(x == 0 && y == 0) {
+			throw new RuntimeException("Both coordinates can't be 0");
+		}
 		double module = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 		this.setLocation(x / module, y / module);
 	}

@@ -4,13 +4,12 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
 import utils.MovingGameComponent;
-import utils.UnitVector2D;
 
 import java.awt.*;
 
 public class Platform extends MovingGameComponent {
 	
-	int maxSpeed = 200;
+	protected int maxSpeed = 200;
 
     public Platform(Color color, int width, int height, double xPos, double yPos) {
 
@@ -27,13 +26,19 @@ public class Platform extends MovingGameComponent {
 
     public void anyKeyPressed(DeltaState deltaState){
         if(deltaState.isKeyBeingHold(Key.LEFT)) {
-            uVector = new UnitVector2D(-1, 0);
-            speed = maxSpeed;
+        	this.getUVector().set(-1, 0);
+        	this.setSpeed(this.getMaxSpeed());
         } else if(deltaState.isKeyBeingHold(Key.RIGHT)) {
-            uVector = new UnitVector2D(1, 0);
-            speed = maxSpeed;
+        	this.getUVector().set(1, 0);
+        	this.setSpeed(this.getMaxSpeed());
         } else {
-            speed = 0;
+        	this.setSpeed(0);
         }
     }
+
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+    
+    
 }

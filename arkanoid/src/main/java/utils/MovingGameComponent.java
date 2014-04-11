@@ -57,4 +57,8 @@ public class MovingGameComponent extends GameComponent<GameScene> {
 		return this.uVector;
 	}
 
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
 }
