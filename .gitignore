@@ -72,6 +72,8 @@ local.properties
 # PDT-specific
 .buildpath
 
+arkanoid/src/main/security/keystore.jks
+
 # intelliJ IDEA
 arkanoid.iml
 .idea/

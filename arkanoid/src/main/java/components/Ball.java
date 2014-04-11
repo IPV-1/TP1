@@ -27,6 +27,27 @@ public class Ball extends MovingGameComponent {
         
         ((ArkanoidScene)this.getScene()).verifyBallCollides(this);
     }
+    
+	public void collide(GameComponent<?> component) {
+		Bounds ballB = new Bounds(this.getX(), this.getY(), this.getAppearance().getWidth(), this.getAppearance().getHeight());
+		Bounds componentB = new Bounds(component.getX(), component.getY(), component.getAppearance().getWidth(), component.getAppearance().getHeight());
+		
+		if(isHorizontalCollision(ballB, componentB)){
+			if(ballB.getTop() < componentB.getTop()) {
+				this.setY(component.getY() - this.getAppearance().getHeight() - 1);
+			} else {
+				this.setY(component.getY() + component.getAppearance().getHeight() + 1);
+			}
+			boundY();
+		} else {
+			if(ballB.getLeft() < componentB.getLeft()) {
+				this.setX(component.getX() - this.getAppearance().getWidth() - 1);
+			} else {
+				this.setX(component.getX() + component.getAppearance().getWidth() + 1);
+			}
+			boundX();
+		}
+	}
 
 	public void updateX(DeltaState delta){
         new XUpdater(this).update(delta);
@@ -47,37 +68,20 @@ public class Ball extends MovingGameComponent {
     public double getDiameter() {
         return this.getAppearance().getWidth();
     }
-
-	public void collides(GameComponent<?> component) {
-		Bounds ballB = new Bounds(this.getX(), this.getY(), this.getAppearance().getWidth(), this.getAppearance().getHeight());
-		Bounds componentB = new Bounds(component.getX(), component.getY(), component.getAppearance().getWidth(), component.getAppearance().getHeight());
+	
+	// Move to collision engine
+	public boolean isHorizontalCollision(Bounds r1, Bounds r2) {		
+		double tamX = r2.getRight() - r1.getLeft();
+		double tamY = r2.getBottom() - r1.getTop();
 		
-		if(isHorizontalCollision(ballB, componentB)){
-			System.out.println("COLLISSION HORIZONTAL");
-			if(ballB.getTop() < componentB.getTop()) {
-				this.setY(component.getY() - this.getAppearance().getHeight() - 1);
-			} else {
-				this.setY(component.getY() + component.getAppearance().getHeight() + 1);
-			}
-			boundY();
-		} else {
-				System.out.println("COLLISSION VERTICAL");
-				if(ballB.getLeft() < componentB.getLeft()) {
-					this.setX(component.getX() - this.getAppearance().getWidth() - 1);
-				} else {
-					this.setX(component.getX() + component.getAppearance().getWidth() + 1);
-				}
-				boundX();
+		if(r1.getLeft() <= r2.getLeft() && r2.getLeft() < r1.getRight()) {
+			tamX = r1.getRight() - r2.getLeft(); 
 		}
+		
+		if(r1.getTop() <= r2.getTop() && r2.getTop() < r1.getBottom()) {
+			tamY = r1.getBottom() - r2.getTop();
+		}
+		
+		return tamY < tamX;
 	}
-	
-	public boolean isVerticalCollision(Bounds r1, Bounds r2) {
-		return (r1.getBottom() < r2.getTop() || r1.getTop() > r2.getBottom());
-	}
-	
-	public boolean isHorizontalCollision(Bounds r1, Bounds r2) {
-		return ! (r1.getRight() < r2.getLeft() || r1.getLeft() > r2.getRight());
-	}
-
-
 }

@@ -20,16 +20,16 @@ public class UnitVector2D {
 	}
 	
 	public void invertY() {
-		this.getPoint().setLocation(this.getX(), - this.getY());
+		this.setLocation(this.getX(), - this.getY());
 	}
 	
 	public void invert() {
-		this.getPoint().setLocation(- this.getX(), - this.getY());
+		this.setLocation(- this.getX(), - this.getY());
 	}
 	
 	protected void set(double x, double y){
 		double module = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-		this.getPoint().setLocation(x / module, y / module);
+		this.setLocation(x / module, y / module);
 	}
 
 
@@ -49,5 +49,9 @@ public class UnitVector2D {
 	protected Point2D.Double getPoint() {
 		return this.point;
 	}
+
+    protected void setLocation(double x, double y){
+        this.getPoint().setLocation(x, y);
+    }
 
 }

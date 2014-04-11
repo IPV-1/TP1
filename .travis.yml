@@ -1,0 +1,14 @@
+language: java
+
+env:
+  global:
+    - REPO="IPV-1/TP1"
+    - CI_HOME=`pwd`/$REPO
+
+script: sh build.sh
+
+jdk:
+  - openjdk7
+  - oraclejdk7
+
+
