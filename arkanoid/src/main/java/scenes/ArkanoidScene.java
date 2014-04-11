@@ -44,7 +44,7 @@ public class ArkanoidScene extends GameScene {
 		List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
 				Color.BLUE, Color.MAGENTA, Color.GREEN);
 		for (int i = 0; i < colors.size(); i++, y += Block.HEIGHT + 1) {
-			for (int x = 0; x + Block.WIDTH < WIDTH - 250; x += Block.WIDTH + 1) {
+			for (int x = 18; x + Block.WIDTH < WIDTH; x += Block.WIDTH + 1) {
 				this.addComponent(new Block(colors.get(i), x, y));
 			}
 		}
