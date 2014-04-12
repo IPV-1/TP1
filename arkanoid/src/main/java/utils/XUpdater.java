@@ -12,6 +12,11 @@ public class XUpdater extends CoordinateUpdater {
 	public int getDimensionLimit(MovingGameComponent component) {
 		return component.getScene().getGame().getDisplayWidth();
 	}
+	
+	@Override
+	public int getDimensionFrom(MovingGameComponent component) {
+		return 0;
+	}
 
 	@Override
 	public double getCoordinate(MovingGameComponent component) {

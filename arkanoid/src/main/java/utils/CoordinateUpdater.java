@@ -9,8 +9,8 @@ public abstract class CoordinateUpdater {
 
 	public boolean update(MovingGameComponent comp) {
 		boolean updated = false;
-		if (this.getCoordinate(comp) <= 0) {
-			this.setCoordinate(comp, 0);
+		if (this.getCoordinate(comp) <= this.getDimensionFrom(comp)) {
+			this.setCoordinate(comp, this.getDimensionFrom(comp));
 			updated = true;
 		} else if (this.getCoordinate(comp) + this.getDimension(comp) >= getDimensionLimit(comp)) {
 			this.setCoordinate(comp, getDimensionLimit(comp) - this.getDimension(comp));
@@ -23,6 +23,8 @@ public abstract class CoordinateUpdater {
 	 * Choose a better name
 	 */
 	public abstract int getDimensionLimit(MovingGameComponent component);
+	public abstract int getDimensionFrom(MovingGameComponent component);
+	
 
 	public abstract double getCoordinate(MovingGameComponent component);
 

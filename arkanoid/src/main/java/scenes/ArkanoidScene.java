@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
+import utils.YUpdater;
+
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
@@ -18,7 +20,7 @@ public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
 	private Platform platform = new Platform(Color.blue, 100, 10, 20, 580);
-	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 100);
+	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 1000);
 
 	public ArkanoidScene(Game game) {
 		super();
@@ -35,7 +37,7 @@ public class ArkanoidScene extends GameScene {
 	
 	public void verifyBallCollides(Ball ball) {
 		for (GameComponent<?> component : this.getComponents()) {
-			if(component != ball &&
+			if(component != ball && component != scoreBoard &&
 				CollisionDetector.INSTANCE.collidesCircleAgainstRect(ball.getCirc(), component.getRect())) {
 				
 				// Notify collides ball with component
@@ -43,14 +45,14 @@ public class ArkanoidScene extends GameScene {
 				component.collide(ball);
 			}
 		}
-		if(this.getComponentCount() == 2) {
+		if(this.getComponentCount() == 3) {
 			this.win();
 		}
 	}
 
 	protected void addBlocks() {
 		final int WIDTH = this.getGame().getDisplayWidth();
-		int y = 50;
+		int y = YUpdater.UPPER_LIMIT + 80;
 		List<Color> colors = Arrays.asList(
 				//TODO uncomment when finish debugging
 				//Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
