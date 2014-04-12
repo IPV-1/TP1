@@ -14,10 +14,12 @@ import com.uqbar.vainilla.events.constants.Key;
 public class Platform extends MovingGameComponent {
 	
 	protected int maxSpeed = 250;
+	
+	public static final int WIDTH = 100;
 
-    public Platform(Color color, int width, int height, double xPos, double yPos) {
+    public Platform(Color color, int height, double xPos, double yPos) {
 
-        super(new Rectangle(color, width, height), xPos, yPos, 1, 1, 0);
+        super(new Rectangle(color, WIDTH, height), xPos, yPos, 1, 1, 0);
     }
 
 	@Override

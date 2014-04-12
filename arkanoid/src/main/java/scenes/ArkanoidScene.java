@@ -19,8 +19,8 @@ import components.ScoreBoard;
 public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
-	private Platform platform = new Platform(Color.blue, 100, 10, 20, 580);
-	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 1000);
+	private Platform platform = new Platform(Color.blue, 10, 20, 580);
+	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
 
 	public ArkanoidScene(Game game) {
 		super();

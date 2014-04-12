@@ -42,7 +42,14 @@ public class UnitVector2D {
 	public void setY(double y) throws RuntimeException {
 		this.set(this.getX(), y);
 	}
+	
+	public void setPI(double multiplier) {
+		this.setLocation(Math.cos(Math.PI * multiplier), Math.sin(Math.PI * multiplier));
+	}
 
+	protected void setLocation(double x, double y){
+		this.getPoint().setLocation(x, y);
+	}
 
 	@Override
 	public String toString() {
@@ -60,9 +67,5 @@ public class UnitVector2D {
 	protected Point2D.Double getPoint() {
 		return this.point;
 	}
-
-    protected void setLocation(double x, double y){
-        this.getPoint().setLocation(x, y);
-    }
 
 }

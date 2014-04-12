@@ -2,6 +2,8 @@ package components;
 
 import java.awt.Color;
 
+import javax.swing.text.html.MinimalHTMLWriter;
+
 import scenes.ArkanoidScene;
 import utils.XUpdater;
 import utils.YUpdater;
@@ -15,45 +17,47 @@ import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Ball extends MovingGameComponent {
-	
-	public static final int DIAMETER = 20;
-	
-    public Ball(Color color, double xPos, double yPos, UnitVector2D direction, double speed) {
-        super(new Circle(color, Ball.DIAMETER), xPos, yPos, direction.getX(), direction.getY(), speed);
-    }
 
-    @Override
-    public void update(DeltaState deltaState) {
-        super.update(deltaState);
-        if(this.updateX(deltaState)) {
-        	this.bounceX();
-        }
-        if(this.updateY(deltaState)) {
-        	if(this.getY() != 0) {
-        		((ArkanoidScene)this.getScene()).lose();
-        	}
-        	//TODO uncomment when finish debugging
-//        	else {
-        		this.bounceY();
-//        	}
-        }
-        
-        ((ArkanoidScene)this.getScene()).verifyBallCollides(this);
-    }
-    
+	public static final int DIAMETER = 20;
+
+	public Ball(Color color, double xPos, double yPos, UnitVector2D direction,
+			double speed) {
+		super(new Circle(color, Ball.DIAMETER), xPos, yPos, direction.getX(),
+				direction.getY(), speed);
+	}
+
+	@Override
+	public void update(DeltaState deltaState) {
+		super.update(deltaState);
+		if (this.updateX(deltaState)) {
+			this.bounceX();
+		}
+		if (this.updateY(deltaState)) {
+			if (this.getY() != 0) {
+				((ArkanoidScene) this.getScene()).lose();
+			}
+			// TODO uncomment when finish debugging
+			// else {
+			this.bounceY();
+			// }
+		}
+
+		((ArkanoidScene) this.getScene()).verifyBallCollides(this);
+	}
+
 	public void collide(GameComponent<?> component) {
 		Bounds ballB = new Bounds(this);
 		Bounds componentB = new Bounds(component);
-		
-		if(CollisionDetector.INSTANCE.isHorizontalCollision(ballB, componentB)){
-			if(ballB.getTop() < componentB.getTop()) {
+
+		if (CollisionDetector.INSTANCE.isHorizontalCollision(ballB, componentB)) {
+			if (ballB.getTop() < componentB.getTop()) {
 				this.setY(component.getY() - this.getHeight() - 1);
 			} else {
 				this.setY(component.getY() + component.getHeight() + 1);
 			}
-			bounceY();
+			bounceY(component);
 		} else {
-			if(ballB.getLeft() < componentB.getLeft()) {
+			if (ballB.getLeft() < componentB.getLeft()) {
 				this.setX(component.getX() - this.getWidth() - 1);
 			} else {
 				this.setX(component.getX() + component.getWidth() + 1);
@@ -62,25 +66,36 @@ public class Ball extends MovingGameComponent {
 		}
 	}
 
-	public boolean updateX(DeltaState delta){
-        return XUpdater.INSTANCE.update(this);
-    }
+	public boolean updateX(DeltaState delta) {
+		return XUpdater.INSTANCE.update(this);
+	}
 
-    public boolean  updateY(DeltaState delta){
-    	return YUpdater.INSTANCE.update(this);
-    }
+	public boolean updateY(DeltaState delta) {
+		return YUpdater.INSTANCE.update(this);
+	}
 
-    public void bounceX() {
-        uVector.invertX();
-    }
+	public void bounceY(GameComponent<?> component) {
+		if (component.getClass() == Platform.class) {
+			double dif = (this.getX() - component.getX()) / Platform.WIDTH;
+			dif = Math.min(dif, 0.9);
+			dif = Math.max(dif, 0.1);
+			this.getUVector().setPI(-1 + dif);
+		} else {
+			uVector.invertY();
+		}
+	}
 
-    public void bounceY() {
-        uVector.invertY();
-    }
+	public void bounceX() {
+		uVector.invertX();
+	}
 
-    public double getDiameter() {
-        return this.getAppearance().getWidth();
-    }
+	public void bounceY() {
+		uVector.invertY();
+	}
+
+	public double getDiameter() {
+		return this.getAppearance().getWidth();
+	}
 
 	public void placeOver(Platform platform) {
 		this.setY(platform.getY() - this.getHeight() - 1);
