@@ -11,15 +11,19 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Block;
 import components.Platform;
+import components.ScoreBoard;
 
 public class ArkanoidScene extends GameScene {
+	
+	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
 
 	public ArkanoidScene(Game game) {
 		super();
 
 		this.setGame(game);
-		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 1500));
+		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 2500));
 		this.addComponent(new Platform(Color.blue, 100, 10, 20, 580));
+		this.addComponent(this.getScoreBoard());
 		this.addBlocks();
 	}
 	
@@ -45,6 +49,14 @@ public class ArkanoidScene extends GameScene {
 				this.addComponent(new Block(colors.get(i), x, y));
 			}
 		}
+	}
+
+	public void addScore(int value) {
+		this.getScoreBoard().add(value);
+	}
+
+	public ScoreBoard getScoreBoard() {
+		return scoreBoard;
 	}
 
 }

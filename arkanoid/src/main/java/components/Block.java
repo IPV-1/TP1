@@ -18,6 +18,7 @@ public class Block extends GameComponent<ArkanoidScene> {
 	
 	@Override
 	public void collide(GameComponent<?> component) {
+		((ArkanoidScene)this.getScene()).addScore(100);
 		this.explode();
 	}
 	
