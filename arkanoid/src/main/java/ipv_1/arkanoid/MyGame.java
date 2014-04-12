@@ -1,12 +1,10 @@
 package ipv_1.arkanoid;
 
-import java.awt.Dimension;
-
-import scenes.ArkanoidScene;
-
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import com.uqbar.vainilla.GameScene;
+import scenes.StartScene;
+
+import java.awt.*;
 
 public class MyGame extends Game {
 
@@ -19,8 +17,7 @@ public class MyGame extends Game {
 
 	@Override
 	protected void setUpScenes() {
-		GameScene scene = new ArkanoidScene(this);
-		this.setCurrentScene(scene);
+		this.setCurrentScene(new StartScene(this));
 	}
 
 	@Override
