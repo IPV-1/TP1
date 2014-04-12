@@ -9,15 +9,15 @@ import utils.YUpdater;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.MovingGameComponent;
+import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Ball extends MovingGameComponent {
 	
-    public Ball(Color color, int diameter, double xPos, double yPos, double xVec,
-                double yVec, double speed) {
-        super(new Circle(color, diameter), xPos, yPos, xVec, yVec, speed);
+    public Ball(Color color, int diameter, double xPos, double yPos, UnitVector2D direction, double speed) {
+        super(new Circle(color, diameter), xPos, yPos, direction.getX(), direction.getY(), speed);
     }
 
     @Override
@@ -73,5 +73,9 @@ public class Ball extends MovingGameComponent {
     public double getDiameter() {
         return this.getAppearance().getWidth();
     }
+
+	public void placeOver(Platform platform) {
+		this.setY(platform.getY() - this.getHeight() - 1);
+	}
 
 }

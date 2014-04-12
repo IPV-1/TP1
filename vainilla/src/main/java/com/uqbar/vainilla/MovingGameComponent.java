@@ -45,6 +45,10 @@ public class MovingGameComponent extends GameComponent<GameScene> {
 	public double getSpeedFactor(DeltaState deltaState) {
 		return this.getSpeed() * deltaState.getDelta();
 	}
+	
+    public void center() {
+		this.setX(this.getScene().getGame().getDisplayWidth() / 2 - (this.getWidth() / 2));
+	}
 
 	public double getSpeed() {
 		return this.speed;

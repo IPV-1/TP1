@@ -1,24 +1,24 @@
 package components;
 
+import java.awt.Color;
+
+import utils.XUpdater;
+
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
 
-import java.awt.*;
-
-import utils.XUpdater;
-
 public class Platform extends MovingGameComponent {
 	
-	protected int maxSpeed = 200;
+	protected int maxSpeed = 250;
 
     public Platform(Color color, int width, int height, double xPos, double yPos) {
 
         super(new Rectangle(color, width, height), xPos, yPos, 1, 1, 0);
     }
 
-    @Override
+	@Override
     public void update(DeltaState deltaState){
         this.anyKeyPressed(deltaState);
         super.update(deltaState);
@@ -36,7 +36,7 @@ public class Platform extends MovingGameComponent {
         	this.setSpeed(0);
         }
     }
-
+    
 	public int getMaxSpeed() {
 		return maxSpeed;
 	}

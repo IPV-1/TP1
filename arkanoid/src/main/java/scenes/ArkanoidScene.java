@@ -7,6 +7,7 @@ import java.util.List;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Block;
@@ -16,15 +17,20 @@ import components.ScoreBoard;
 public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
+	private Platform platform = new Platform(Color.blue, 100, 10, 20, 580);
+	private Ball ball = new Ball(Color.black, 20, 100, 390, new UnitVector2D(1, -1), 100);
 
 	public ArkanoidScene(Game game) {
 		super();
 
 		this.setGame(game);
-		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 2500));
-		this.addComponent(new Platform(Color.blue, 100, 10, 20, 580));
 		this.addComponent(this.getScoreBoard());
 		this.addBlocks();
+		this.addComponent(platform);
+		platform.center();
+		this.addComponent(ball);
+		ball.center();
+		ball.placeOver(platform);
 	}
 	
 	public void verifyBallCollides(Ball ball) {
