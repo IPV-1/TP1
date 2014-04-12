@@ -1,6 +1,7 @@
 package utils;
 
 import com.uqbar.vainilla.MovingGameComponent;
+import components.Ball;
 
 public class YUpdater extends CoordinateUpdater {
 
@@ -10,7 +11,7 @@ public class YUpdater extends CoordinateUpdater {
 
 	@Override
 	public int getDimensionLimit(MovingGameComponent component) {
-		return component.getScene().getGame().getDisplayHeight();
+		return component.getScene().getGame().getDisplayHeight() + Ball.DIAMETER;
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
 	private Platform platform = new Platform(Color.blue, 100, 10, 20, 580);
-	private Ball ball = new Ball(Color.black, 20, 100, 390, new UnitVector2D(1, -1), 100);
+	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 100);
 
 	public ArkanoidScene(Game game) {
 		super();
@@ -43,18 +43,32 @@ public class ArkanoidScene extends GameScene {
 				component.collide(ball);
 			}
 		}
+		if(this.getComponentCount() == 2) {
+			this.win();
+		}
 	}
 
 	protected void addBlocks() {
 		final int WIDTH = this.getGame().getDisplayWidth();
 		int y = 50;
-		List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
+		List<Color> colors = Arrays.asList(
+				//TODO uncomment when finish debugging
+				//Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
 				Color.BLUE, Color.MAGENTA, Color.GREEN);
 		for (int i = 0; i < colors.size(); i++, y += Block.HEIGHT + 1) {
 			for (int x = 18; x + Block.WIDTH < WIDTH; x += Block.WIDTH + 1) {
 				this.addComponent(new Block(colors.get(i), x, y));
 			}
 		}
+	}
+	
+	public void lose() {
+		//TODO uncomment when finish debugging
+		//this.getGame().setCurrentScene(new LoseScene(this.getGame()));
+	}
+	
+	public void win() {
+		this.getGame().setCurrentScene(new WinScene(this.getGame()));
 	}
 
 	public void addScore(int value) {

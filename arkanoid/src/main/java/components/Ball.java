@@ -16,8 +16,10 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 
 public class Ball extends MovingGameComponent {
 	
-    public Ball(Color color, int diameter, double xPos, double yPos, UnitVector2D direction, double speed) {
-        super(new Circle(color, diameter), xPos, yPos, direction.getX(), direction.getY(), speed);
+	public static final int DIAMETER = 20;
+	
+    public Ball(Color color, double xPos, double yPos, UnitVector2D direction, double speed) {
+        super(new Circle(color, Ball.DIAMETER), xPos, yPos, direction.getX(), direction.getY(), speed);
     }
 
     @Override
@@ -27,7 +29,13 @@ public class Ball extends MovingGameComponent {
         	this.bounceX();
         }
         if(this.updateY(deltaState)) {
-        	this.bounceY();
+        	if(this.getY() != 0) {
+        		((ArkanoidScene)this.getScene()).lose();
+        	}
+        	//TODO uncomment when finish debugging
+//        	else {
+        		this.bounceY();
+//        	}
         }
         
         ((ArkanoidScene)this.getScene()).verifyBallCollides(this);
