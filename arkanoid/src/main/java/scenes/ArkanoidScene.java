@@ -18,8 +18,8 @@ public class ArkanoidScene extends GameScene {
 		super();
 
 		this.setGame(game);
-		this.addComponent(new Ball(Color.black, 50, 100, 390, 1, 1, 1500));
 		this.addComponent(new Platform(Color.blue, 100, 10, 20, 580));
+		this.addComponent(new Ball(Color.black, 100, 390, 1, 1, 1500));
 		this.addBlocks();
 	}
 	
@@ -33,18 +33,32 @@ public class ArkanoidScene extends GameScene {
 				component.collide(ball);
 			}
 		}
+		if(this.getComponentCount() == 2) {
+			this.win();
+		}
 	}
 
 	protected void addBlocks() {
 		final int WIDTH = this.getGame().getDisplayWidth();
 		int y = 50;
-		List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
+		List<Color> colors = Arrays.asList(
+				//TODO uncomment when finish debugging
+				//Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
 				Color.BLUE, Color.MAGENTA, Color.GREEN);
 		for (int i = 0; i < colors.size(); i++, y += Block.HEIGHT + 1) {
 			for (int x = 18; x + Block.WIDTH < WIDTH; x += Block.WIDTH + 1) {
 				this.addComponent(new Block(colors.get(i), x, y));
 			}
 		}
+	}
+	
+	public void lose() {
+		//TODO uncomment when finish debugging
+		//this.getGame().setCurrentScene(new LoseScene(this.getGame()));
+	}
+	
+	public void win() {
+		this.getGame().setCurrentScene(new WinScene(this.getGame()));
 	}
 
 }
