@@ -86,4 +86,8 @@ public class Ball extends MovingGameComponent {
 		this.setY(platform.getY() - this.getHeight() - 1);
 	}
 
+	public void speedUp(int i) {
+		this.setSpeed(this.getSpeed() + i);
+	}
+
 }

@@ -2,9 +2,11 @@ package components;
 
 import java.awt.Color;
 
+import scenes.ArkanoidScene;
 import utils.XUpdater;
 
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
@@ -35,6 +37,11 @@ public class Platform extends MovingGameComponent {
         } else {
         	this.setSpeed(0);
         }
+    }
+    
+    @Override
+    public void collide(GameComponent<?> component) {
+    	((ArkanoidScene)this.getScene()).speedUp(10);
     }
     
 	public int getMaxSpeed() {

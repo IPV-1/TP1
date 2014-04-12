@@ -18,7 +18,7 @@ public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
 	private Platform platform = new Platform(Color.blue, 100, 10, 20, 580);
-	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 100);
+	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 1100);
 
 	public ArkanoidScene(Game game) {
 		super();
@@ -74,9 +74,17 @@ public class ArkanoidScene extends GameScene {
 	public void addScore(int value) {
 		this.getScoreBoard().add(value);
 	}
+	
+	public void speedUp(int value) {
+		this.getBall().speedUp(value);
+		// Increment platform speed??
+	}
 
 	public ScoreBoard getScoreBoard() {
 		return scoreBoard;
 	}
-
+	
+	public Ball getBall() {
+		return ball;
+	}
 }
