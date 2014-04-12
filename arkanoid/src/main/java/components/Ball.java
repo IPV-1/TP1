@@ -2,8 +2,6 @@ package components;
 
 import java.awt.Color;
 
-import javax.swing.text.html.MinimalHTMLWriter;
-
 import scenes.ArkanoidScene;
 import utils.XUpdater;
 import utils.YUpdater;
@@ -76,10 +74,9 @@ public class Ball extends MovingGameComponent {
 
 	public void bounceY(GameComponent<?> component) {
 		if (component.getClass() == Platform.class) {
-			double dif = (this.getX() - component.getX()) / Platform.WIDTH;
-			dif = Math.min(dif, 0.9);
-			dif = Math.max(dif, 0.1);
-			this.getUVector().setPI(-1 + dif);
+			final double LIMIT = 0.65;
+			double dif = (this.getX() - component.getX()) / Platform.WIDTH * LIMIT;
+			this.getUVector().setPI(dif - 1 + (1 - LIMIT) / 2);
 		} else {
 			uVector.invertY();
 		}

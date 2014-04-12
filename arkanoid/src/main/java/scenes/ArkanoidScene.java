@@ -19,7 +19,7 @@ import components.ScoreBoard;
 public class ArkanoidScene extends GameScene {
 	
 	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
-	private Platform platform = new Platform(Color.blue, 10, 20, 580);
+	private Platform platform = new Platform(Color.blue, 10, 508, 580);
 	private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
 
 	public ArkanoidScene(Game game) {
@@ -29,7 +29,7 @@ public class ArkanoidScene extends GameScene {
 		this.addComponent(this.getScoreBoard());
 		this.addBlocks();
 		this.addComponent(platform);
-		platform.center();
+//		platform.center();
 		this.addComponent(ball);
 		ball.center();
 		ball.placeOver(platform);
