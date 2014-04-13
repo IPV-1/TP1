@@ -3,7 +3,6 @@ package components;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
-import scenes.ArkanoidScene;
 import utils.XUpdater;
 
 import java.awt.*;
@@ -40,7 +39,7 @@ public class Platform extends ArkanoidMovingGameComponent {
 
     @Override
     public void collidedBy(Ball ball) {
-    	((ArkanoidScene)this.getScene()).speedUp(10);
+    	this.getScene().speedUp(10);
     }
 
 	public int getMaxSpeed() {
