@@ -27,6 +27,7 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addComponent(this.getScoreBoard());
         this.addBlocks();
         this.addComponent(this.getPlatform());
+        this.addCollidable(this.getPlatform());
         this.getPlatform().center();
         this.addComponent(this.getBall());
         this.getBall().center();
@@ -82,4 +83,9 @@ public abstract class BasicArkanoidScene extends GameScene {
     public Ball getBall(){
         return ball;
     }
+
+    public void addCollidable(Collidable collidable){
+        collidableList.add(collidable);
+    }
+
 }
