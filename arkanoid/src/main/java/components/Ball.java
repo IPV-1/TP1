@@ -2,6 +2,7 @@ package components;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
@@ -12,7 +13,7 @@ import utils.YUpdater;
 
 import java.awt.*;
 
-public class Ball extends ArkanoidMovingGameComponent {
+public class Ball extends MovingGameComponent {
 
 	public static final int DIAMETER = 20;
 
@@ -39,7 +40,9 @@ public class Ball extends ArkanoidMovingGameComponent {
 		((ArkanoidScene) this.getScene()).verifyBallCollides(this);
 	}
 
-	public void collide(GameComponent<?> component) {
+	public void collide(Collidable collidable) {
+        //TODO: Remove the (Cast)
+        GameComponent<?> component = (GameComponent<?>) collidable;
 		Bounds ballB = new Bounds(this);
 		Bounds componentB = new Bounds(component);
 
@@ -49,7 +52,7 @@ public class Ball extends ArkanoidMovingGameComponent {
 			} else {
 				this.setY(component.getY() + component.getHeight() + 1);
 			}
-			bounceY(component);
+			bounceY( component);
 		} else {
 			if (ballB.getLeft() < componentB.getLeft()) {
 				this.setX(component.getX() - this.getWidth() - 1);

@@ -1,8 +1,8 @@
 package components.blocks;
 
-import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import components.ArkanoidGameComponent;
+import components.Ball;
 
 import java.awt.*;
 
@@ -15,9 +15,10 @@ public class Block extends ArkanoidGameComponent {
 		super(new Rectangle(color, Block.WIDTH, Block.HEIGHT), x, y);
 	}
 	
-	@Override
-	public void collide(GameComponent<?> component) {
+
+	public void collideBy(Ball ball) {
 		this.getScene().addScore(100);
+        this.getScene().removeCollidable(this);
 		this.explode();
 	}
 	

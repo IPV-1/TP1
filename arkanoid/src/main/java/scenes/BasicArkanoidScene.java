@@ -1,7 +1,6 @@
 package scenes;
 
 import com.uqbar.vainilla.Game;
-import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.colissions.CollisionDetector;
@@ -37,13 +36,12 @@ public abstract class BasicArkanoidScene extends GameScene {
 
     public void verifyBallCollides(Ball ball) {
         //TODO: refactor this.
-        for (GameComponent<?> component : this.getComponents()) {
-            if(component != ball && component != scoreBoard &&
-                    CollisionDetector.INSTANCE.collidesCircleAgainstRect(ball.getCirc(), component.getRect())) {
+        for (Collidable component : this.getCollidables()) {
+            if(CollisionDetector.INSTANCE.collidesCircleAgainstRect(ball.getCirc(), component.getRect())) {
 
                 // Notify collides ball with component
                 ball.collide(component);
-                component.collide(ball);
+                component.collideBy(ball);
             }
         }
         if(this.getComponentCount() == 3) {
@@ -88,4 +86,11 @@ public abstract class BasicArkanoidScene extends GameScene {
         collidableList.add(collidable);
     }
 
+    public ArrayList<Collidable> getCollidables(){
+        return new ArrayList<Collidable>(this.collidableList);
+    }
+
+    public void removeCollidable(Collidable collidable) {
+        collidableList.remove(collidable);
+    }
 }
