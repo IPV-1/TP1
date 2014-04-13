@@ -2,11 +2,11 @@ package components.blocks;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
-import scenes.ArkanoidScene;
+import components.ArkanoidGameComponent;
 
 import java.awt.*;
 
-public class Block extends GameComponent<ArkanoidScene> {
+public class Block extends ArkanoidGameComponent {
 	
 	public static final int WIDTH = 50;
 	public static final int HEIGHT = 20;
@@ -17,7 +17,7 @@ public class Block extends GameComponent<ArkanoidScene> {
 	
 	@Override
 	public void collide(GameComponent<?> component) {
-		((ArkanoidScene)this.getScene()).addScore(100);
+		this.getScene().addScore(100);
 		this.explode();
 	}
 	

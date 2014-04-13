@@ -6,6 +6,7 @@ import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
+import components.Collidable;
 import components.Platform;
 import components.ScoreBoard;
 import components.blocks.Block;
@@ -18,6 +19,7 @@ public abstract class BasicArkanoidScene extends GameScene {
     private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
     private Platform platform = new Platform(Color.blue, 10, 20, 580);
     private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
+    private ArrayList<Collidable> collidableList = new ArrayList<Collidable>();
 
     public BasicArkanoidScene(Game game) {
         super();
