@@ -2,7 +2,7 @@ package ipv_1.arkanoid;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import scenes.StartScene;
+import scenes.statics.StartScene;
 
 import java.awt.*;
 
