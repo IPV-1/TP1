@@ -41,8 +41,7 @@ public class Ball extends MovingGameComponent<ArkanoidScene> {
 	}
 
 	public void collide(Collidable collidable) {
-        //TODO: Remove the (Cast)
-        GameComponent<?> component = (GameComponent<?>) collidable;
+        GameComponent<?> component = collidable.asComponent();
 		Bounds ballB = new Bounds(this);
 		Bounds componentB = new Bounds(component);
 

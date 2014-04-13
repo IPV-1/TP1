@@ -1,10 +1,10 @@
 package components;
 
-import com.uqbar.vainilla.colissions.Rectangle;
+import com.uqbar.vainilla.GameComponent;
 
 public interface Collidable {
     public void collidedBy(Ball ball);
 
-    //TODO: Remove this
-    Rectangle getRect();
+    public GameComponent asComponent();
+
 }

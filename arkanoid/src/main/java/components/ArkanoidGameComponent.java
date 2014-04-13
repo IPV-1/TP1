@@ -8,4 +8,11 @@ public abstract class ArkanoidGameComponent extends GameComponent<ArkanoidScene>
     public ArkanoidGameComponent(Appearance appearance, double x, double y) {
         super(appearance, x, y);
     }
+
+
+    @Override
+    public ArkanoidGameComponent asComponent(){
+        return this;
+    }
+
 }
