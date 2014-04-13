@@ -8,9 +8,11 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Platform;
 import components.ScoreBoard;
+import components.blocks.Block;
 import scenes.statics.LoseScene;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class BasicArkanoidScene extends GameScene {
     private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
@@ -54,6 +56,10 @@ public abstract class BasicArkanoidScene extends GameScene {
     public abstract void win();
 
     public abstract void addBlocks();
+
+    public void addBlocks(ArrayList<Block> blocks){
+        this.addComponents(blocks);
+    }
 
     public void addScore(int value) {
         this.getScoreBoard().add(value);

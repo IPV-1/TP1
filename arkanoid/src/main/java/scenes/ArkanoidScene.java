@@ -13,7 +13,7 @@ public class ArkanoidScene extends BasicArkanoidScene {
     }
 
     public void addBlocks() {
-        BlockFactory.addBlocks(this, YUpdater.UPPER_LIMIT);
+        this.addBlocks(BlockFactory.blocks(this.getGame().getDisplayWidth(), YUpdater.UPPER_LIMIT));
     }
 
     public void win() {
