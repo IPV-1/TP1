@@ -1,11 +1,10 @@
-package components;
-
-import java.awt.Color;
-
-import scenes.ArkanoidScene;
+package components.blocks;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
+import scenes.ArkanoidScene;
+
+import java.awt.*;
 
 public class Block extends GameComponent<ArkanoidScene> {
 	

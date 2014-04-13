@@ -1,20 +1,17 @@
 package scenes;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.List;
-
-import utils.YUpdater;
-
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
-import components.Block;
 import components.Platform;
 import components.ScoreBoard;
+import components.blocks.BlockFactory;
+import utils.YUpdater;
+
+import java.awt.*;
 
 public class ArkanoidScene extends GameScene {
 	
@@ -51,17 +48,7 @@ public class ArkanoidScene extends GameScene {
 	}
 
 	protected void addBlocks() {
-		final int WIDTH = this.getGame().getDisplayWidth();
-		int y = YUpdater.UPPER_LIMIT + 80;
-		List<Color> colors = Arrays.asList(
-				//TODO uncomment when finish debugging
-				//Color.LIGHT_GRAY, Color.RED, Color.YELLOW,
-				Color.BLUE, Color.MAGENTA, Color.GREEN);
-		for (int i = 0; i < colors.size(); i++, y += Block.HEIGHT + 1) {
-			for (int x = 18; x + Block.WIDTH < WIDTH; x += Block.WIDTH + 1) {
-				this.addComponent(new Block(colors.get(i), x, y));
-			}
-		}
+        BlockFactory.addBlocks(this, YUpdater.UPPER_LIMIT);
 	}
 	
 	public void lose() {
