@@ -1,4 +1,4 @@
-package scenes;
+package scenes.statics;
 
 import com.uqbar.vainilla.Game;
 

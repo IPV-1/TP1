@@ -2,6 +2,7 @@ package scenes;
 
 import com.uqbar.vainilla.Game;
 import components.blocks.BlockFactory;
+import scenes.statics.WinScene;
 import utils.YUpdater;
 
 public class ArkanoidScene extends BasicArkanoidScene {

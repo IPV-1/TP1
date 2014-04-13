@@ -8,6 +8,7 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Platform;
 import components.ScoreBoard;
+import scenes.statics.LoseScene;
 
 import java.awt.*;
 
