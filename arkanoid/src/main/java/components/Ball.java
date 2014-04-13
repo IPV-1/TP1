@@ -13,7 +13,7 @@ import utils.YUpdater;
 
 import java.awt.*;
 
-public class Ball extends MovingGameComponent {
+public class Ball extends MovingGameComponent<ArkanoidScene> {
 
 	public static final int DIAMETER = 20;
 
@@ -31,13 +31,13 @@ public class Ball extends MovingGameComponent {
 		}
         if (this.updateY(deltaState)) {
             if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
-                ((ArkanoidScene) this.getScene()).lose();
+                this.getScene().lose();
             } else {
                 this.bounceY();
             }
         }
 
-		((ArkanoidScene) this.getScene()).verifyBallCollides(this);
+		this.getScene().verifyBallCollides(this);
 	}
 
 	public void collide(Collidable collidable) {

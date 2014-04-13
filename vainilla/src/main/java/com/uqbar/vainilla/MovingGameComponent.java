@@ -5,7 +5,7 @@ import com.uqbar.vainilla.appearances.Appearance;
 /**
  * GameComponent with velocity (speed and unit vector)
  */
-public class MovingGameComponent extends GameComponent<GameScene> {
+public class MovingGameComponent<SceneType extends GameScene> extends GameComponent<SceneType> {
 
 	protected UnitVector2D uVector;
 	protected double speed;
