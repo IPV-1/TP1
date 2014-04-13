@@ -18,12 +18,12 @@ public class Block extends ArkanoidGameComponent {
 
 	public void collidedBy(Ball ball) {
 		this.getScene().addScore(100);
-        this.getScene().removeCollidable(this);
 		this.explode();
 	}
 	
 	// Could throw a gift
 	public void explode() {
+        this.getScene().removeCollidable(this);
 		this.destroy();
 	}
 
