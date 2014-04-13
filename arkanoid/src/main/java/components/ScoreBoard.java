@@ -1,13 +1,11 @@
 package components;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import scenes.ArkanoidScene;
-
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Label;
+import scenes.ArkanoidScene;
+
+import java.awt.*;
 
 public class ScoreBoard extends GameComponent<ArkanoidScene> {
 
@@ -20,7 +18,7 @@ public class ScoreBoard extends GameComponent<ArkanoidScene> {
 	
 	@Override
 	public void update(DeltaState deltaState) {
-		((Label)this.getAppearance()).setText("Score: "+ Integer.toString(this.getValue())); 
+		this.changeScore(getValue());
 		super.update(deltaState);
 	}
 
@@ -35,5 +33,14 @@ public class ScoreBoard extends GameComponent<ArkanoidScene> {
 	public void add(int value) {
 		this.setValue(this.getValue() + value);
 	}
+
+    public void changeScore(int score){
+        this.getAppearance().setText("Score: "+ Integer.toString(score));
+    }
+
+    @Override
+    public Label getAppearance(){
+        return (Label) super.getAppearance();
+    }
 
 }
