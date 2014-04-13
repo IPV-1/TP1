@@ -41,7 +41,7 @@ public abstract class BasicArkanoidScene extends GameScene {
 
                 // Notify collides ball with component
                 ball.collide(component);
-                component.collideBy(ball);
+                component.collidedBy(ball);
             }
         }
         if(this.getComponentCount() == 3) {

@@ -39,7 +39,7 @@ public class Platform extends ArkanoidMovingGameComponent {
     }
 
     @Override
-    public void collideBy(Ball ball) {
+    public void collidedBy(Ball ball) {
     	((ArkanoidScene)this.getScene()).speedUp(10);
     }
 
