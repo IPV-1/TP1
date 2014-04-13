@@ -1,6 +1,7 @@
 package components;
 
 import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
 import utils.XUpdater;
@@ -42,7 +43,15 @@ public class Platform extends ArkanoidMovingGameComponent {
     	this.getScene().speedUp(10);
     }
 
-	public int getMaxSpeed() {
+    @Override
+    public void bounceBallY(Ball ball) {
+        GameComponent component = this.asComponent();
+        final double LIMIT = 0.65;
+        double dif = (ball.getX() - component.getX()) / Platform.WIDTH * LIMIT;
+        ball.getUVector().setPI(dif - 1 + (1 - LIMIT) / 2);
+    }
+
+    public int getMaxSpeed() {
 		return maxSpeed;
 	}
 

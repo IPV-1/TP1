@@ -7,4 +7,6 @@ public interface Collidable {
 
     public GameComponent asComponent();
 
+    public void bounceBallY(Ball ball);
+
 }

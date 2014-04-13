@@ -15,4 +15,9 @@ public abstract class ArkanoidGameComponent extends GameComponent<ArkanoidScene>
         return this;
     }
 
+    @Override
+    public void bounceBallY(Ball ball) {
+        ball.getUVector().invertY();
+    }
+
 }

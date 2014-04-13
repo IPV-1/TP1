@@ -14,4 +14,9 @@ public abstract class ArkanoidMovingGameComponent extends MovingGameComponent<Ar
     public ArkanoidMovingGameComponent asComponent(){
         return this;
     }
+
+    @Override
+    public void bounceBallY(Ball ball) {
+        ball.getUVector().invertY();
+    }
 }

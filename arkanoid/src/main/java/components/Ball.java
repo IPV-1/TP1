@@ -51,7 +51,7 @@ public class Ball extends MovingGameComponent<ArkanoidScene> {
 			} else {
 				this.setY(component.getY() + component.getHeight() + 1);
 			}
-			bounceY( component);
+			bounceY(collidable);
 		} else {
 			if (ballB.getLeft() < componentB.getLeft()) {
 				this.setX(component.getX() - this.getWidth() - 1);
@@ -70,14 +70,8 @@ public class Ball extends MovingGameComponent<ArkanoidScene> {
 		return YUpdater.INSTANCE.update(this);
 	}
 
-	public void bounceY(GameComponent<?> component) {
-		if (component.getClass() == Platform.class) {
-			final double LIMIT = 0.65;
-			double dif = (this.getX() - component.getX()) / Platform.WIDTH * LIMIT;
-			this.getUVector().setPI(dif - 1 + (1 - LIMIT) / 2);
-		} else {
-			uVector.invertY();
-		}
+	public void bounceY(Collidable collidable) {
+        collidable.bounceBallY(this);
 	}
 
 	public void bounceX() {
