@@ -12,21 +12,42 @@ import java.awt.*;
 
 public abstract class SelectableText extends GameComponent<ArkanoidScene> {
     public int style = Font.PLAIN;
+    private boolean selected = false;
 
     public SelectableText(String text, double x, double y, boolean selected) {
         super(x, y);
-        if (selected) {
-            this.style = Font.BOLD;
-        } else {
-            this.style = Font.PLAIN;
-        }
+        this.selected = selected;
         this.setAppearance(new Label(new Font("SansSerif", this.style, 50), Color.RED, text));
+        if (this.selected) {
+            this.select();
+        }
     }
 
     public void update(DeltaState deltaState) {
-        if (deltaState.isKeyReleased(Key.ENTER)) {
+        if (this.clicked(deltaState)) {
             this.getGame().setCurrentScene(this.getNewScene());
         }
+    }
+
+    public void select() {
+        this.style = Font.BOLD;
+        this.changeStyle(this.style);
+    }
+
+    public void unselect(){
+        this.style = Font.PLAIN;
+        this.changeStyle(this.style);
+    }
+
+    public boolean clicked(DeltaState deltaState){
+        return deltaState.isKeyReleased(Key.ENTER) && this.selected;
+    }
+
+    protected void changeStyle(int style){
+        this.style = style;
+        Label label = (Label) this.getAppearance();
+        Font font = label.getFont().deriveFont(style);
+        label.setFont(font);
     }
 
     public abstract GameScene getNewScene();
