@@ -1,20 +1,18 @@
 package components;
 
-import java.awt.Color;
-
+import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.appearances.Rectangle;
+import com.uqbar.vainilla.events.constants.Key;
 import scenes.ArkanoidScene;
 import utils.XUpdater;
 
-import com.uqbar.vainilla.DeltaState;
-import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.MovingGameComponent;
-import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.events.constants.Key;
+import java.awt.*;
 
-public class Platform extends MovingGameComponent {
-	
+public class Platform extends ArkanoidMovingGameComponent {
+
 	protected int maxSpeed = 250;
-	
+
 	public static final int WIDTH = 100;
 
     public Platform(Color color, int height, double xPos, double yPos) {
@@ -40,15 +38,15 @@ public class Platform extends MovingGameComponent {
         	this.setSpeed(0);
         }
     }
-    
+
     @Override
     public void collide(GameComponent<?> component) {
     	((ArkanoidScene)this.getScene()).speedUp(10);
     }
-    
+
 	public int getMaxSpeed() {
 		return maxSpeed;
 	}
-    
-    
+
+
 }
