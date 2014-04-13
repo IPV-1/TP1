@@ -52,8 +52,7 @@ public class ArkanoidScene extends GameScene {
 	}
 	
 	public void lose() {
-		//TODO uncomment when finish debugging
-		//this.getGame().setCurrentScene(new LoseScene(this.getGame()));
+		this.getGame().setCurrentScene(new LoseScene(this.getGame()));
 	}
 	
 	public void win() {

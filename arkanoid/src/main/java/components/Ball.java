@@ -1,11 +1,5 @@
 package components;
 
-import java.awt.Color;
-
-import scenes.ArkanoidScene;
-import utils.XUpdater;
-import utils.YUpdater;
-
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.MovingGameComponent;
@@ -13,6 +7,11 @@ import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
+import scenes.ArkanoidScene;
+import utils.XUpdater;
+import utils.YUpdater;
+
+import java.awt.*;
 
 public class Ball extends MovingGameComponent {
 
@@ -30,15 +29,13 @@ public class Ball extends MovingGameComponent {
 		if (this.updateX(deltaState)) {
 			this.bounceX();
 		}
-		if (this.updateY(deltaState)) {
-			if (this.getY() != 0) {
-				((ArkanoidScene) this.getScene()).lose();
-			}
-			// TODO uncomment when finish debugging
-			// else {
-			this.bounceY();
-			// }
-		}
+        if (this.updateY(deltaState)) {
+            if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
+                ((ArkanoidScene) this.getScene()).lose();
+            } else {
+                this.bounceY();
+            }
+        }
 
 		((ArkanoidScene) this.getScene()).verifyBallCollides(this);
 	}
