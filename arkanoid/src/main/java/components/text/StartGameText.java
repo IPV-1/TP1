@@ -1,6 +1,7 @@
 package components.text;
 
 import com.uqbar.vainilla.GameScene;
+import com.uqbar.vainilla.events.constants.Key;
 import scenes.ArkanoidScene;
 
 public class StartGameText extends SelectableText{
@@ -12,6 +13,10 @@ public class StartGameText extends SelectableText{
 
     public GameScene getNewScene(){
         return new ArkanoidScene(this.getGame());
+    }
+
+    protected Key textKey(){
+        return Key.ENTER;
     }
 
 }
