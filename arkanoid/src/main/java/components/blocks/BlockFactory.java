@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class BlockFactory {
 
     private static int blockSeparation = 1;
-    private static int initialTopSeparation = 80;
+    private static int initialTopSeparation = 40;
     private static int initialLeftSeparation = 18;
 
     private static java.util.List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW, Color.BLUE, Color.MAGENTA, Color.GREEN);
