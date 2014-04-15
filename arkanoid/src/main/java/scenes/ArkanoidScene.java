@@ -4,7 +4,6 @@ import com.uqbar.vainilla.Game;
 import components.Collidable;
 import components.blocks.Block;
 import components.blocks.BlockFactory;
-import scenes.statics.WinScene;
 import utils.YUpdater;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class ArkanoidScene extends BasicArkanoidScene {
     }
 
     public void win() {
-        this.getGame().setCurrentScene(new WinScene(this.getGame()));
+        this.getGame().setCurrentScene(new Level2(this.getGame()));
     }
 
 

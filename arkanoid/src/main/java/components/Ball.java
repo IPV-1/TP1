@@ -7,13 +7,13 @@ import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
-import scenes.ArkanoidScene;
+import scenes.BasicArkanoidScene;
 import utils.XUpdater;
 import utils.YUpdater;
 
 import java.awt.*;
 
-public class Ball extends MovingGameComponent<ArkanoidScene> {
+public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
 	public static final int DIAMETER = 20;
 
