@@ -18,7 +18,9 @@ public class Level2 extends BasicArkanoidScene {
 
     public void addBlocks() {
         ArrayList<MultiLifeBlock> blocks = BlockFactory.multiLifeBlocks(this.getGame().getDisplayWidth(), YUpdater.UPPER_LIMIT);
+        //TODO addBlocks(blocks) shpuld work
         this.addComponents(blocks);
+        this.getBlocks().addAll(blocks);
         for(Collidable c : blocks){
             this.addCollidable(c);
         }
