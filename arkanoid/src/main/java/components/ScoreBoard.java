@@ -13,7 +13,7 @@ public class ScoreBoard extends GameComponent<ArkanoidScene> {
 	
 	public ScoreBoard(double x, double y, Color color) {		
 		super(new Label(new Font("verdana",  Font.BOLD, 36), color, "0"), x, y);
-		this.value = 0;
+		this.reset();
 	}
 	
 	@Override
@@ -42,5 +42,9 @@ public class ScoreBoard extends GameComponent<ArkanoidScene> {
     public Label getAppearance(){
         return (Label) super.getAppearance();
     }
+
+	public void reset() {
+		this.setValue(0);
+	}
 
 }

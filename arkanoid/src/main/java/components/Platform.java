@@ -45,7 +45,7 @@ public class Platform extends ArkanoidMovingGameComponent {
 
     @Override
     public void bounceBallY(Ball ball) {
-        GameComponent component = this.asComponent();
+        GameComponent<?> component = this.asComponent();
         final double LIMIT = 0.65;
         double dif = (ball.getX() - component.getX()) / Platform.WIDTH * LIMIT;
         ball.getUVector().setPI(dif - 1 + (1 - LIMIT) / 2);

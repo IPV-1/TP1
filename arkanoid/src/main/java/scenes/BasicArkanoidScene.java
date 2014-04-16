@@ -1,5 +1,13 @@
 package scenes;
 
+import ipv_1.arkanoid.MyGame;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+import scenes.statics.LoseScene;
+
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
@@ -10,16 +18,12 @@ import components.Collidable;
 import components.Platform;
 import components.ScoreBoard;
 import components.blocks.Block;
-import scenes.statics.LoseScene;
-
-import java.awt.*;
-import java.util.ArrayList;
 
 public abstract class BasicArkanoidScene extends GameScene {
-    private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
     private Platform platform = new Platform(Color.blue, 10, 20, 580);
     private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
-    private ArrayList<Collidable> collidableList = new ArrayList<Collidable>();
+    private List<Block> blocks = new ArrayList<Block>();
+    private List<Collidable> collidableList = new ArrayList<Collidable>();
 
     public BasicArkanoidScene(Game game) {
         super();
@@ -38,7 +42,7 @@ public abstract class BasicArkanoidScene extends GameScene {
     public void verifyBallCollides(Ball ball) {
         //TODO: refactor this.
         for (Collidable collidable : this.getCollidables()) {
-            GameComponent component = collidable.asComponent();
+            GameComponent<?> component = collidable.asComponent();
             if(CollisionDetector.INSTANCE.collidesCircleAgainstRect(ball.getCirc(), component.getRect())) {
 
                 // Notify collides ball with component
@@ -46,13 +50,14 @@ public abstract class BasicArkanoidScene extends GameScene {
                 collidable.collidedBy(ball);
             }
         }
-        if(this.getComponentCount() == 3) {
+        if(this.getBlocks().isEmpty()) {
             this.win();
         }
     }
 
     public void lose() {
         //TODO: player should lost a life
+    	this.getScoreBoard().reset();
         this.getGame().setCurrentScene(new LoseScene(this.getGame()));
     }
 
@@ -62,6 +67,7 @@ public abstract class BasicArkanoidScene extends GameScene {
 
     public void addBlocks(ArrayList<Block> blocks){
         this.addComponents(blocks);
+        this.getBlocks().addAll(blocks);
     }
 
     public void addScore(int value) {
@@ -73,7 +79,7 @@ public abstract class BasicArkanoidScene extends GameScene {
     }
 
     public ScoreBoard getScoreBoard() {
-        return scoreBoard;
+        return ((MyGame)this.getGame()).getScoreBoard();
     }
 
     public Platform getPlatform() {
@@ -95,4 +101,13 @@ public abstract class BasicArkanoidScene extends GameScene {
     public void removeCollidable(Collidable collidable) {
         collidableList.remove(collidable);
     }
+
+	public List<Block> getBlocks() {
+		return blocks;
+	}
+
+	public void removeBlock(Block block) {
+		blocks.remove(block);
+	}
+
 }

@@ -1,14 +1,13 @@
 package com.uqbar.vainilla.appearances;
 
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 import com.uqbar.vainilla.GameComponent;
+
+import java.awt.*;
 
 public class FilledArc implements Appearance {
 
-	private final Color color;
+	private Color color;
 	private final int radius;
 	private final double startAngle;
 	private final double arcAngle;
@@ -61,4 +60,13 @@ public class FilledArc implements Appearance {
 		graphics.fillArc(x, y, (int) this.getWidth(), (int) this.getHeight(), (int) this.startAngle,
 				(int) this.arcAngle);
 	}
+
+    public Color getColor(){
+        return color;
+    }
+
+    public void setColor(Color color){
+        this.color = color;
+    }
+
 }
