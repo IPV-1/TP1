@@ -26,6 +26,7 @@ public class Block extends ArkanoidGameComponent {
 
 	// Could throw a gift
 	public void explode() {
+		this.getScene().removeBlock(this);
         this.getScene().removeCollidable(this);
 		this.destroy();
 	}
