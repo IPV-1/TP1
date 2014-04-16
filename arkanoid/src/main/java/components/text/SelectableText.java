@@ -38,11 +38,13 @@ public abstract class SelectableText extends GameComponent<ArkanoidScene> {
     public void select() {
         this.style = Font.BOLD;
         this.changeStyle(this.style);
+        this.selected = true;
     }
 
     public void unselect() {
         this.style = Font.PLAIN;
         this.changeStyle(this.style);
+        this.selected = false;
     }
 
     public boolean clicked(DeltaState deltaState) {
