@@ -32,9 +32,7 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addCollidable(this.getPlatform());
         this.getPlatform().center();
         addBall();
-        addComponents(getBalls());
         centerBalls();
-
     }
 
     public void verifyBallCollides(Ball ball) {
@@ -93,6 +91,7 @@ public abstract class BasicArkanoidScene extends GameScene {
         addBall(new Ball(Color.BLUE, 100, 390, new UnitVector2D(1, -1), 200));
     }
     public void addBall(Ball ball){
+        addComponent(ball);
         getBalls().add(ball);
     }
 
