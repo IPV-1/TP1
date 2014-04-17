@@ -94,6 +94,9 @@ public abstract class BasicArkanoidScene extends GameScene {
         addComponent(ball);
         getBalls().add(ball);
     }
+    public void removeBall(Ball ball){
+        getBalls().remove(ball);
+    }
 
     public void centerBalls(){
         for(Ball ball : getBalls()){

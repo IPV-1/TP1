@@ -30,15 +30,21 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 			this.bounceX();
 		}
         if (this.updateY(deltaState)) {
-            if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
-                this.getScene().lose();
+            if (getY() >= getScene().getGame().getDisplayHeight()) {
+                destroy();
             } else {
-                this.bounceY();
+                bounceY();
             }
         }
 
 		this.getScene().verifyBallCollides(this);
 	}
+
+    @Override
+    public void destroy(){
+        super.destroy();
+        getScene().removeBall(this);
+    }
 
 	public void collide(Collidable collidable) {
         GameComponent<?> component = collidable.asComponent();
