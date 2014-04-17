@@ -7,10 +7,10 @@ import java.util.Arrays;
 public class BlockFactory {
 
     private static int blockSeparation = 1;
-    private static int initialTopSeparation = 40;
+    private static int initialTopSeparation = 70;
     private static int initialLeftSeparation = 18;
 
-    private static java.util.List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW);
+    private static java.util.List<Color> colors = Arrays.asList(Color.LIGHT_GRAY);//, Color.RED, Color.YELLOW);
 
     public static ArrayList<Block> blocks(int screenWidth, int upperLimit) {
         ArrayList<Block> blocks = new ArrayList<Block>();

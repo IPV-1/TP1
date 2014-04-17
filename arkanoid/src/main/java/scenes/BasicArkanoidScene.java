@@ -6,12 +6,14 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import resources.Resource;
 import scenes.statics.LoseScene;
 
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.UnitVector2D;
+import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Collidable;
@@ -36,6 +38,10 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addComponent(this.getBall());
         this.getBall().center();
         this.getBall().placeOver(this.getPlatform());
+        
+        //TODO Sprite code shown to refactor
+        Sprite s = Resource.getSprite("Arkanoid_Brick_Red.png");
+        this.addComponent(new GameComponent<GameScene>(s, 20, 20));
 
     }
 
