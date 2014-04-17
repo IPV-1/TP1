@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
-	public static final int DIAMETER = 20;
+	public static final int DIAMETER = 10;
 
 	public Ball(Color color, double xPos, double yPos, UnitVector2D direction,
 			double speed) {
