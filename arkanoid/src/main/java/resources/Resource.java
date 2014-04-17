@@ -10,13 +10,23 @@ import com.uqbar.vainilla.exceptions.GameException;
 public class Resource {
 
 	public static Sprite getSprite(String fileName) {
+		return Resource.getSprite("", fileName);
+	}
+	
+	/**
+	 * filePackage needs to be inside Resource's package.
+	 * If there is more than one level of packages, it needs to be written as
+	 * package/subPackage
+	 */
+	public static Sprite getSprite(String filePackage, String fileName) {
 		BufferedImage image;
-
+		String filePath;
+		filePath = filePackage.equals("") ? filePath = fileName : filePackage + "/" + fileName;
 		try {
-			image = ImageIO.read(Resource.class.getResource(fileName));
+			image = ImageIO.read(Resource.class.getResource(filePath));
 		}
 		catch(Exception e) {
-			throw new GameException("The resource '" + fileName + "' was not found");
+			throw new GameException("The resource '" + filePath + "' was not found");
 		}
 
 		return new Sprite(image);
