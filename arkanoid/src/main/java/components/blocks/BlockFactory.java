@@ -43,7 +43,7 @@ public class BlockFactory {
 
     public static ArrayList<MultiLifeBlock> multiLifeBlocksRow(int screenWidth, int y, Color color) {
         ArrayList<MultiLifeBlock> blocks = new ArrayList<MultiLifeBlock>();
-        for (int x = initialLeftSeparation; x + Block.WIDTH < screenWidth; x += Block.WIDTH + blockSeparation) {
+        for (int x = initialLeftSeparation; x + Block.WIDTH < screenWidth - LATERAL_SEPARATION; x += Block.WIDTH + blockSeparation) {
             blocks.add(new MultiLifeBlock(x, y));
         }
         return blocks;
