@@ -6,11 +6,12 @@ import java.util.Arrays;
 
 public class BlockFactory {
 
+	private final static int LATERAL_SEPARATION = 35;
     private static int blockSeparation = 1;
     private static int initialTopSeparation = 70;
-    private static int initialLeftSeparation = 18;
+    private static int initialLeftSeparation = 33 + LATERAL_SEPARATION;
 
-    private static java.util.List<Color> colors = Arrays.asList(Color.LIGHT_GRAY, Color.RED, Color.YELLOW);
+    private static java.util.List<Color> colors = Arrays.asList(Color.YELLOW, Color.ORANGE, Color.RED);
 
     public static ArrayList<Block> blocks(int screenWidth, int upperLimit) {
         ArrayList<Block> blocks = new ArrayList<Block>();
@@ -24,7 +25,7 @@ public class BlockFactory {
 
     public static ArrayList<Block> blockRow(int screenWidth, int y, Color color) {
         ArrayList<Block> blocks = new ArrayList<Block>();
-        for (int x = initialLeftSeparation; x + Block.WIDTH < screenWidth; x += Block.WIDTH + blockSeparation) {
+        for (int x = initialLeftSeparation; x + Block.WIDTH < screenWidth - LATERAL_SEPARATION; x += Block.WIDTH + blockSeparation) {
             blocks.add(new Block(color, x, y));
         }
         return blocks;

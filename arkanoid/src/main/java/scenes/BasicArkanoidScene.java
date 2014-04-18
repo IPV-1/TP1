@@ -1,19 +1,18 @@
 package scenes;
 
+import img.Resource;
 import ipv_1.arkanoid.MyGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import resources.Resource;
 import scenes.statics.LoseScene;
 
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
 import com.uqbar.vainilla.UnitVector2D;
-import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Collidable;
@@ -26,10 +25,15 @@ public abstract class BasicArkanoidScene extends GameScene {
     private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
     private List<Block> blocks = new ArrayList<Block>();
     private List<Collidable> collidableList = new ArrayList<Collidable>();
+	
+    private String backgroundPath = "board.png";
 
     public BasicArkanoidScene(Game game) {
         super();
         this.setGame(game);
+        
+        this.addComponent(getBackground());
+        
         this.addComponent(this.getScoreBoard());
         this.addBlocks();
         this.addComponent(this.getPlatform());
@@ -38,14 +42,13 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addComponent(this.getBall());
         this.getBall().center();
         this.getBall().placeOver(this.getPlatform());
-        
-        //TODO Sprite code shown to refactor
-        Sprite s = Resource.getSprite("Arkanoid_Brick_Red.png");
-        this.addComponent(new GameComponent<GameScene>(s, 20, 20));
-
     }
 
-    public void verifyBallCollides(Ball ball) {
+    private GameComponent<?> getBackground() {
+        return new GameComponent<GameScene>(Resource.getSprite(backgroundPath), 0, 0);
+	}
+
+	public void verifyBallCollides(Ball ball) {
         //TODO: refactor this.
         for (Collidable collidable : this.getCollidables()) {
             GameComponent<?> component = collidable.asComponent();

@@ -6,16 +6,18 @@ public class XUpdater extends CoordinateUpdater {
 
 	public static final XUpdater INSTANCE = new XUpdater();
 	
+	public static final int LIMIT = 35;
+	
 	protected XUpdater(){}
 
 	@Override
 	public int getDimensionLimit(MovingGameComponent component) {
-		return component.getScene().getGame().getDisplayWidth();
+		return component.getScene().getGame().getDisplayWidth() - LIMIT;
 	}
 	
 	@Override
 	public int getDimensionFrom(MovingGameComponent component) {
-		return 0;
+		return 0 + LIMIT;
 	}
 
 	@Override

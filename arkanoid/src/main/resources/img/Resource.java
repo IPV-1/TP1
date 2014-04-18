@@ -1,4 +1,4 @@
-package resources;
+package img;
 
 import java.awt.image.BufferedImage;
 

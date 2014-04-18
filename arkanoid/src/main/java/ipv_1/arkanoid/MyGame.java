@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class MyGame extends Game {
 
-	private ScoreBoard scoreBoard = new ScoreBoard(10, 5, Color.black);
+	private ScoreBoard scoreBoard = new ScoreBoard(15, 3, Color.white);
 	private Dimension dimension;
 	
 	@Override

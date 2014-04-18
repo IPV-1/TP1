@@ -12,7 +12,7 @@ public class ScoreBoard extends GameComponent<ArkanoidScene> {
 	private int value;
 	
 	public ScoreBoard(double x, double y, Color color) {		
-		super(new Label(new Font("verdana",  Font.BOLD, 36), color, "0"), x, y);
+		super(new Label(new Font("verdana",  Font.BOLD, 34), color, "0"), x, y);
 		this.reset();
 	}
 	
