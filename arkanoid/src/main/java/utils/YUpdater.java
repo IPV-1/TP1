@@ -6,7 +6,7 @@ import components.Ball;
 public class YUpdater extends CoordinateUpdater {
 
 	public static final YUpdater INSTANCE = new YUpdater();
-	public static final int UPPER_LIMIT = 50;
+	public static final int UPPER_LIMIT = 65;
 	
 	protected YUpdater(){}
 

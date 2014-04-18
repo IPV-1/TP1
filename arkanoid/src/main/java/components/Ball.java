@@ -15,12 +15,12 @@ import java.awt.*;
 
 public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
-	public static final int DIAMETER = 10;
+	public static final int DIAMETER = 15;
+	public static final int INITIAL_SPEED = 200;
 
-	public Ball(Color color, double xPos, double yPos, UnitVector2D direction,
-			double speed) {
+	public Ball(Color color, double xPos, double yPos, UnitVector2D direction) {
 		super(new Circle(color, Ball.DIAMETER), xPos, yPos, direction.getX(),
-				direction.getY(), speed);
+				direction.getY(), INITIAL_SPEED);
 	}
 
 	@Override
@@ -92,6 +92,12 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
 	public void speedUp(int i) {
 		this.setSpeed(this.getSpeed() + i);
+	}
+
+	public void reset() {
+		uVector = new UnitVector2D(1, -1);
+		this.setSpeed(INITIAL_SPEED);
+		((BasicArkanoidScene)this.getScene()).resetBallPosition();
 	}
 
 }

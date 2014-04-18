@@ -9,6 +9,7 @@ import java.util.List;
 
 import scenes.statics.LoseScene;
 
+
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.GameScene;
@@ -17,12 +18,13 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Collidable;
 import components.Platform;
-import components.ScoreBoard;
 import components.blocks.Block;
+import components.boards.LivesBoard;
+import components.boards.ScoreBoard;
 
 public abstract class BasicArkanoidScene extends GameScene {
     private Platform platform = new Platform(Color.blue, 10, 20, 580);
-    private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1), 200);
+    private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1));
     private List<Block> blocks = new ArrayList<Block>();
     private List<Collidable> collidableList = new ArrayList<Collidable>();
 	
@@ -35,16 +37,32 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addComponent(getBackground());
         
         this.addComponent(this.getScoreBoard());
+        this.addLivesBoard();
+        
         this.addBlocks();
         this.addComponent(this.getPlatform());
         this.addCollidable(this.getPlatform());
         this.getPlatform().center();
         this.addComponent(this.getBall());
-        this.getBall().center();
-        this.getBall().placeOver(this.getPlatform());
+        this.resetBallPosition();
     }
 
-    private GameComponent<?> getBackground() {
+	private void addLivesBoard() {
+		this.addComponent(this.getLivesBoard());
+		this.addComponent(this.getLiveImg());
+	}
+
+	private GameComponent<?> getLiveImg() {
+		GameComponent<GameScene> liveImg = new GameComponent<GameScene>(Resource.getSprite("live.png"), 0, 0);
+		
+		liveImg.setX(this.getLivesBoard().getX() - liveImg.getWidth() - 5);
+		liveImg.verticalCenterRespect(this.getLivesBoard());
+		liveImg.setY(liveImg.getY() + 5);
+		
+		return liveImg;
+	}
+	
+	private GameComponent<?> getBackground() {
         return new GameComponent<GameScene>(Resource.getSprite(backgroundPath), 0, 0);
 	}
 
@@ -65,10 +83,20 @@ public abstract class BasicArkanoidScene extends GameScene {
     }
 
     public void lose() {
-        //TODO: player should lost a life
-    	this.getScoreBoard().reset();
-        this.getGame().setCurrentScene(new LoseScene(this.getGame()));
+    	this.getLivesBoard().die();
+    	
+    	if(this.getLivesBoard().lose()) {
+	    	this.getScoreBoard().reset();
+	        this.getGame().setCurrentScene(new LoseScene(this.getGame()));
+    	} else {
+    		this.getBall().reset();
+    	}
     }
+    
+    public void resetBallPosition() {
+    	this.getBall().horizontalCenterRespect(this.getPlatform());
+        this.getBall().placeOver(this.getPlatform());
+	}
 
     public abstract void win();
 
@@ -117,6 +145,10 @@ public abstract class BasicArkanoidScene extends GameScene {
 
 	public void removeBlock(Block block) {
 		blocks.remove(block);
+	}
+	
+	public LivesBoard getLivesBoard() {
+		return ((MyGame)this.getGame()).getLivesBoard();
 	}
 
 }

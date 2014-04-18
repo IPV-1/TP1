@@ -68,6 +68,14 @@ public class GameComponent<SceneType extends GameScene> {
 	// ****************************************************************
 	// ** ALIGNMENT OPERATIONS
 	// ****************************************************************
+	
+	public void horizontalCenterRespect(GameComponent<?> component) {
+		this.alignHorizontalCenterTo(component.getX() + component.getWidth() / 2);
+	}
+	
+	public void verticalCenterRespect(GameComponent<?> component) {
+		this.alignVerticalCenterTo(component.getY() + component.getHeight() / 2);
+	}
 
 	public void alignTopTo(double y) {
 		this.move(0, y - this.getY());

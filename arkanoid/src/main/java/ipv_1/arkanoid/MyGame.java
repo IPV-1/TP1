@@ -1,8 +1,12 @@
 package ipv_1.arkanoid;
 
+
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import components.ScoreBoard;
+
+import components.boards.LivesBoard;
+import components.boards.ScoreBoard;
+
 
 import scenes.statics.StartScene;
 
@@ -11,6 +15,7 @@ import java.awt.*;
 public class MyGame extends Game {
 
 	private ScoreBoard scoreBoard = new ScoreBoard(15, 3, Color.white);
+    private LivesBoard livesBoard = new LivesBoard(615, 3, Color.white);
 	private Dimension dimension;
 	
 	@Override
@@ -39,6 +44,10 @@ public class MyGame extends Game {
 
 	public ScoreBoard getScoreBoard() {
 		return scoreBoard;
+	}
+
+	public LivesBoard getLivesBoard() {
+		return livesBoard;
 	}
 
 }
