@@ -15,11 +15,14 @@ public class BlockFactory {
 	private static int initialTopSeparation = 70;
 	private static int initialLeftSeparation = 33 + LATERAL_SEPARATION;
 
+	public static final Sprite RED = Resource.getSprite("block_red.png");
+	public static final Sprite BLUE = Resource.getSprite("block_blue.png");
+	public static final Sprite GREEN = Resource.getSprite("block_green.png");
+	public static final Sprite YELLOW = Resource.getSprite("block_yellow.png");
+
 	private static java.util.List<Color> colors = Arrays.asList(Color.YELLOW,
 			Color.ORANGE, Color.RED);
-	private static java.util.List<Sprite> sprites = Arrays.asList(
-			Resource.getSprite("block_blue.png"),
-			Resource.getSprite("block_green.png"));
+	private static java.util.List<Sprite> sprites = Arrays.asList(BLUE, GREEN);
 
 	public static ArrayList<Block> blocks(int screenWidth, int upperLimit) {
 		ArrayList<Block> blocks = new ArrayList<Block>();
