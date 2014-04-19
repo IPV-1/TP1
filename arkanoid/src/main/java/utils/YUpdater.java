@@ -17,7 +17,7 @@ public class YUpdater extends CoordinateUpdater {
 	
 	@Override
 	public int getDimensionFrom(MovingGameComponent component) {
-		return 0 + YUpdater.UPPER_LIMIT;
+		return YUpdater.UPPER_LIMIT;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import com.uqbar.vainilla.exceptions.GameException;
 public class Resource {
 
 	public static Sprite getSprite(String fileName) {
-		return Resource.getSprite("", fileName);
+		return Resource.getSprite(".", fileName);
 	}
 	
 	/**
@@ -21,7 +21,7 @@ public class Resource {
 	public static Sprite getSprite(String filePackage, String fileName) {
 		BufferedImage image;
 		String filePath;
-		filePath = filePackage.equals("") ? filePath = fileName : filePackage + "/" + fileName;
+		filePath = filePackage + "/" + fileName;
 		try {
 			image = ImageIO.read(Resource.class.getResource(filePath));
 		}

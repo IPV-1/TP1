@@ -17,7 +17,7 @@ public class XUpdater extends CoordinateUpdater {
 	
 	@Override
 	public int getDimensionFrom(MovingGameComponent component) {
-		return 0 + LIMIT;
+		return LIMIT;
 	}
 
 	@Override
