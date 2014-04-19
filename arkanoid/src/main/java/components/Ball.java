@@ -4,22 +4,22 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.UnitVector2D;
-import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import scenes.BasicArkanoidScene;
 import utils.XUpdater;
 import utils.YUpdater;
 
+import img.Resource;
+
 import java.awt.*;
 
 public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
-	public static final int DIAMETER = 15;
 	public static final int INITIAL_SPEED = 200;
 
 	public Ball(Color color, double xPos, double yPos, UnitVector2D direction) {
-		super(new Circle(color, Ball.DIAMETER), xPos, yPos, direction.getX(),
+		super(Resource.getSprite("ball.png"), xPos, yPos, direction.getX(),
 				direction.getY(), INITIAL_SPEED);
 	}
 
@@ -29,19 +29,19 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 		if (this.updateX(deltaState)) {
 			this.bounceX();
 		}
-        if (this.updateY(deltaState)) {
-            if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
-                this.getScene().lose();
-            } else {
-                this.bounceY();
-            }
-        }
+		if (this.updateY(deltaState)) {
+			if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
+				this.getScene().lose();
+			} else {
+				this.bounceY();
+			}
+		}
 
 		this.getScene().verifyBallCollides(this);
 	}
 
 	public void collide(Collidable collidable) {
-        GameComponent<?> component = collidable.asComponent();
+		GameComponent<?> component = collidable.asComponent();
 		Bounds ballB = new Bounds(this);
 		Bounds componentB = new Bounds(component);
 
@@ -71,7 +71,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 	}
 
 	public void bounceY(Collidable collidable) {
-        collidable.bounceBallY(this);
+		collidable.bounceBallY(this);
 	}
 
 	public void bounceX() {
@@ -97,7 +97,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 	public void reset() {
 		uVector = new UnitVector2D(1, -1);
 		this.setSpeed(INITIAL_SPEED);
-		((BasicArkanoidScene)this.getScene()).resetBallPosition();
+		((BasicArkanoidScene) this.getScene()).resetBallPosition();
 	}
 
 }

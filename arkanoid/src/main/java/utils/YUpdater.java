@@ -12,7 +12,7 @@ public class YUpdater extends CoordinateUpdater {
 
 	@Override
 	public int getDimensionLimit(MovingGameComponent component) {
-		return component.getScene().getGame().getDisplayHeight() + Ball.DIAMETER;
+		return component.getScene().getGame().getDisplayHeight() + (int)component.getHeight();
 	}
 	
 	@Override
