@@ -21,6 +21,8 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 	public static final int INITIAL_SPEED = 200;
 	protected static final Sound HIT_SOUND = Resource.getSound("ball_hit.wav");
 	protected static final Sound LOSE_SOUND = Resource.getSound("ball_lose.wav");
+	protected static final float VOLUME = 0.3f;
+	
 
 	public Ball(Color color, double xPos, double yPos, UnitVector2D direction) {
 		super(Resource.getSprite("ball.png"), xPos, yPos, direction.getX(),
@@ -32,15 +34,15 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 		super.update(deltaState);
 		if (this.updateX(deltaState)) {
 			this.bounceX();
-			HIT_SOUND.play();
+			HIT_SOUND.play(VOLUME);
 		}
 		if (this.updateY(deltaState)) {
 			if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
 				this.getScene().lose();
-				LOSE_SOUND.play();
+				LOSE_SOUND.play(VOLUME);
 			} else {
 				this.bounceY();
-				HIT_SOUND.play();
+				HIT_SOUND.play(VOLUME);
 			}
 		}
 
@@ -67,7 +69,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 			}
 			bounceX();
 		}
-		HIT_SOUND.play();
+		HIT_SOUND.play(VOLUME);
 	}
 
 	public boolean updateX(DeltaState delta) {
