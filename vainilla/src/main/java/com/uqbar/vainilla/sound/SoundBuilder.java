@@ -49,11 +49,11 @@ public class SoundBuilder {
 	// ** OPERATIONS
 	// ****************************************************************
 
-	public Sound buildSound(String path) {
-		return this.buildSound(this.getClass().getResourceAsStream(path));
+	public static Sound buildSound(String path) {
+		return buildSound(SoundBuilder.class.getResourceAsStream(path));
 	}
 
-	public Sound buildSound(InputStream inputStream) {
+	public static Sound buildSound(InputStream inputStream) {
 		try {
 			AudioInputStream input = getAudioInputStream(new BufferedInputStream(inputStream));
 			AudioFormat inputFormat = toNormalizedReadableFormat(input.getFormat());

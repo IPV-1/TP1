@@ -1,10 +1,11 @@
 package components.blocks;
 
-import img.Resource;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import resource.Resource;
 
 import com.uqbar.vainilla.appearances.Sprite;
 

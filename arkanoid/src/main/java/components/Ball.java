@@ -6,17 +6,21 @@ import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.UnitVector2D;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
+import com.uqbar.vainilla.sound.Sound;
+
+import resource.Resource;
 import scenes.BasicArkanoidScene;
 import utils.XUpdater;
 import utils.YUpdater;
 
-import img.Resource;
 
 import java.awt.*;
 
 public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
 	public static final int INITIAL_SPEED = 200;
+	protected static final Sound HIT_SOUND = Resource.getSound("ball_hit.wav");
+	protected static final Sound LOSE_SOUND = Resource.getSound("ball_lose.wav");
 
 	public Ball(Color color, double xPos, double yPos, UnitVector2D direction) {
 		super(Resource.getSprite("ball.png"), xPos, yPos, direction.getX(),
@@ -28,12 +32,15 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 		super.update(deltaState);
 		if (this.updateX(deltaState)) {
 			this.bounceX();
+			HIT_SOUND.play();
 		}
 		if (this.updateY(deltaState)) {
 			if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
 				this.getScene().lose();
+				LOSE_SOUND.play();
 			} else {
 				this.bounceY();
+				HIT_SOUND.play();
 			}
 		}
 
@@ -60,6 +67,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 			}
 			bounceX();
 		}
+		HIT_SOUND.play();
 	}
 
 	public boolean updateX(DeltaState delta) {

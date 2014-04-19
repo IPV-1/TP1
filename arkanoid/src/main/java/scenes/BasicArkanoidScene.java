@@ -1,12 +1,12 @@
 package scenes;
 
-import img.Resource;
 import ipv_1.arkanoid.MyGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import resource.Resource;
 import scenes.statics.LoseScene;
 
 
