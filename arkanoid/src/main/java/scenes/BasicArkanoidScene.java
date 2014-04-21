@@ -87,6 +87,7 @@ public abstract class BasicArkanoidScene extends GameScene {
     	
     	if(this.getLivesBoard().lose()) {
 	    	this.getScoreBoard().reset();
+	    	this.getLivesBoard().reset();
 	        this.getGame().setCurrentScene(new LoseScene(this.getGame()));
     	} else {
     		this.getBall().reset();

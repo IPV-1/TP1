@@ -15,12 +15,13 @@ public class LivesBoard extends Board {
 		this.add(-1);
 	}
 
+	@Override
 	public void reset() {
 		this.setValue(MAX_LIVES);
 	}
 
 	public boolean lose() {
-		return this.getValue() == 0;
+		return this.getValue() <= 0;
 	}
 
 	@Override
