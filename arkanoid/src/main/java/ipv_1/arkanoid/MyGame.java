@@ -1,14 +1,12 @@
 package ipv_1.arkanoid;
 
-
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 
 import components.boards.LivesBoard;
 import components.boards.ScoreBoard;
 
-
-import scenes.statics.StartScene;
+import scenes.statics.TitleScene;
 
 import java.awt.*;
 
@@ -25,7 +23,7 @@ public class MyGame extends Game {
 
 	@Override
 	protected void setUpScenes() {
-		this.setCurrentScene(new StartScene(this));
+		this.setCurrentScene(new TitleScene(this));
 	}
 
 	@Override

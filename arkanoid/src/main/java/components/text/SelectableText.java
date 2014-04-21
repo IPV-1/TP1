@@ -48,7 +48,7 @@ public abstract class SelectableText extends GameComponent<ArkanoidScene> {
     }
 
     public boolean clicked(DeltaState deltaState) {
-        return deltaState.isKeyReleased(this.textKey()) && this.selected;
+        return deltaState.isKeyPressed(this.textKey()) && this.selected;
     }
 
     protected abstract Key textKey();
