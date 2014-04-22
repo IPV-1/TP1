@@ -4,6 +4,7 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.events.constants.Key;
+import resource.Resource;
 import utils.XUpdater;
 
 import java.awt.*;
@@ -16,7 +17,7 @@ public class Platform extends ArkanoidMovingGameComponent {
 
     public Platform(Color color, int height, double xPos, double yPos) {
 
-        super(new Rectangle(color, WIDTH, height), xPos, yPos, 1, 1, 0);
+        super(Resource.getSprite("platform.png"), xPos, yPos, 1, 1, 0);
     }
 
 	@Override
