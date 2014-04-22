@@ -6,9 +6,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import resource.Resource;
 import scenes.statics.LoseScene;
-
 
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.GameComponent;
@@ -18,13 +16,12 @@ import com.uqbar.vainilla.colissions.CollisionDetector;
 import components.Ball;
 import components.Collidable;
 import components.Platform;
+import components.ScoreBoard;
 import components.blocks.Block;
-import components.boards.LivesBoard;
-import components.boards.ScoreBoard;
 
 public abstract class BasicArkanoidScene extends GameScene {
     private Platform platform = new Platform(Color.blue, 10, 20, 580);
-    private Ball ball = new Ball(Color.black, 100, 390, new UnitVector2D(1, -1));
+    private ArrayList<Ball> balls = new ArrayList<Ball>();
     private List<Block> blocks = new ArrayList<Block>();
     private List<Collidable> collidableList = new ArrayList<Collidable>();
 	
@@ -43,8 +40,8 @@ public abstract class BasicArkanoidScene extends GameScene {
         this.addComponent(this.getPlatform());
         this.addCollidable(this.getPlatform());
         this.getPlatform().center();
-        this.addComponent(this.getBall());
-        this.resetBallPosition();
+        addBall();
+        centerBalls();
     }
 
 	private void addLivesBoard() {
@@ -113,7 +110,8 @@ public abstract class BasicArkanoidScene extends GameScene {
     }
 
     public void speedUp(int value) {
-        this.getBall().speedUp(value);
+        for(Ball ball : getBalls())
+            ball.speedUp(value);
     }
 
     public ScoreBoard getScoreBoard() {
@@ -124,8 +122,34 @@ public abstract class BasicArkanoidScene extends GameScene {
         return platform;
     }
 
+    public ArrayList<Ball> getBalls(){
+        return balls;
+    }
+
     public Ball getBall(){
-        return ball;
+        if(balls.isEmpty()){
+            addBall();
+        }
+        return balls.get(0);
+    }
+
+    public void addBall(){
+        addBall(new Ball(Color.BLUE, 100, 390, new UnitVector2D(1, -1), 200));
+    }
+    public void addBall(Ball ball){
+        addComponent(ball);
+        getBalls().add(ball);
+    }
+    public void removeBall(Ball ball){
+        getBalls().remove(ball);
+    }
+
+    public void centerBalls(){
+        for(Ball ball : getBalls()){
+            ball.center();
+            ball.placeOver(this.getPlatform());
+        }
+
     }
 
     public void addCollidable(Collidable collidable){

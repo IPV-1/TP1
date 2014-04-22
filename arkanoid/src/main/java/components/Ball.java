@@ -4,6 +4,7 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.MovingGameComponent;
 import com.uqbar.vainilla.UnitVector2D;
+import com.uqbar.vainilla.appearances.Circle;
 import com.uqbar.vainilla.colissions.Bounds;
 import com.uqbar.vainilla.colissions.CollisionDetector;
 import com.uqbar.vainilla.sound.Sound;
@@ -38,7 +39,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 		}
 		if (this.updateY(deltaState)) {
 			if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
-				this.getScene().lose();
+                destroy();
 				LOSE_SOUND.play(VOLUME);
 			} else {
 				this.bounceY();
@@ -49,8 +50,14 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 		this.getScene().verifyBallCollides(this);
 	}
 
+    @Override
+    public void destroy(){
+        super.destroy();
+        getScene().removeBall(this);
+    }
+
 	public void collide(Collidable collidable) {
-		GameComponent<?> component = collidable.asComponent();
+        GameComponent<?> component = collidable.asComponent();
 		Bounds ballB = new Bounds(this);
 		Bounds componentB = new Bounds(component);
 
@@ -81,7 +88,7 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 	}
 
 	public void bounceY(Collidable collidable) {
-		collidable.bounceBallY(this);
+        collidable.bounceBallY(this);
 	}
 
 	public void bounceX() {

@@ -25,6 +25,8 @@ public class Platform extends ArkanoidMovingGameComponent {
         this.anyKeyPressed(deltaState);
         super.update(deltaState);
         XUpdater.INSTANCE.update(this);
+        if(getScene().getBalls().isEmpty())
+            getScene().lose();
     }
 
     public void anyKeyPressed(DeltaState deltaState){
