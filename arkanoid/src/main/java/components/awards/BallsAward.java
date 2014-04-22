@@ -17,6 +17,6 @@ public class BallsAward extends Award {
     public void giveAware() {
         int x = randInt(100, 700);
         int y = randInt(400, 500);
-        this.getScene().addBall(new Ball(Color.RED, x, y, new UnitVector2D(1, -1), 200));
+        this.getScene().addBall(new Ball(Color.RED, x, y, new UnitVector2D(1, -1)));
     }
 }

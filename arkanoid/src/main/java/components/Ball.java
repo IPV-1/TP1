@@ -32,22 +32,24 @@ public class Ball extends MovingGameComponent<BasicArkanoidScene> {
 
 	@Override
 	public void update(DeltaState deltaState) {
-		super.update(deltaState);
-		if (this.updateX(deltaState)) {
-			this.bounceX();
-			HIT_SOUND.play(VOLUME);
-		}
-		if (this.updateY(deltaState)) {
-			if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
-                destroy();
-				LOSE_SOUND.play(VOLUME);
-			} else {
-				this.bounceY();
-				HIT_SOUND.play(VOLUME);
-			}
-		}
+        if(getGame() != null){
+            super.update(deltaState);
+            if (this.updateX(deltaState)) {
+                this.bounceX();
+                HIT_SOUND.play(VOLUME);
+            }
+            if (this.updateY(deltaState)) {
+                if (this.getY() >= this.getScene().getGame().getDisplayHeight()) {
+                    destroy();
+                    LOSE_SOUND.play(VOLUME);
+                } else {
+                    this.bounceY();
+                    HIT_SOUND.play(VOLUME);
+                }
+            }
 
-		this.getScene().verifyBallCollides(this);
+            this.getScene().verifyBallCollides(this);
+        }
 	}
 
     @Override

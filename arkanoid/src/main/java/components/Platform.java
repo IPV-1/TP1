@@ -13,7 +13,7 @@ public class Platform extends ArkanoidMovingGameComponent {
 
 	protected int maxSpeed = 250;
 
-	public static final int WIDTH = 100;
+	public static final int WIDTH = 113;
 
     public Platform(Color color, int height, double xPos, double yPos) {
 
@@ -50,7 +50,7 @@ public class Platform extends ArkanoidMovingGameComponent {
     public void bounceBallY(Ball ball) {
         GameComponent<?> component = this.asComponent();
         final double LIMIT = 0.65;
-        double dif = (ball.getX() - component.getX()) / Platform.WIDTH * LIMIT;
+        double dif = (ball.getX() - component.getX()) / getWidth() * LIMIT;
         ball.getUVector().setPI(dif - 1 + (1 - LIMIT) / 2);
     }
 
